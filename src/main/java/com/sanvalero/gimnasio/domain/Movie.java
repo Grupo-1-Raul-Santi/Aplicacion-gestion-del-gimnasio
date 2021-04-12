@@ -1,4 +1,4 @@
-package com.sanvalero.netflix.domain;
+package com.sanvalero.gimnasio.domain;
 
 /**
  * Una película

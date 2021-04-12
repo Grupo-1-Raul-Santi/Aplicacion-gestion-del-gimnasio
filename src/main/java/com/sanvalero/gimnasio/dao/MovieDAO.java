@@ -1,7 +1,7 @@
 
-package com.sanvalero.netflix.dao;
+package com.sanvalero.gimnasio.dao;
 
-import com.sanvalero.netflix.domain.Movie;
+import com.sanvalero.gimnasio.domain.Movie;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
