@@ -1,6 +1,6 @@
-package com.sanvalero.netflix.servlet;
+package com.sanvalero.gimnasio.servlet;
 
-import com.sanvalero.netflix.dao.MovieDAO;
+import com.sanvalero.gimnasio.dao.MovieDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
