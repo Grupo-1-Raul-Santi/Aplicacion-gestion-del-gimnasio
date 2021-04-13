@@ -52,4 +52,19 @@ public class SocioDao {
         }
         return socios;
     }
+    
+    public ArrayList<Socio> listarNombreApellido(Socio socio) throws SQLException {
+        ArrayList<Socio> socios = new ArrayList<>();
+        String sql = "SELECT NOMBRE_SOCIO, APELLIDO_SOCIO FROM SOCIOS WHERE DNI = ?";
+        PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
+        sentencia.setString(1, socio.getDni());
+        ResultSet rs = sentencia.executeQuery();
+        while (rs.next()) {
+            Socio socioAux = new Socio();
+            socioAux.setIdSocio(rs.getString(1));
+            socioAux.setIdSocio(rs.getString(2));
+            socios.add(socioAux);
+        }
+        return socios;
+    }
 }
