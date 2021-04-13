@@ -1,7 +1,5 @@
 package com.sanvalero.gimnasio.servlet;
 
-import com.sanvalero.gimnasio.dao.MovieDAO;
-import com.sanvalero.gimnasio.domain.Movie;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -17,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "movies", urlPatterns = {"/movies"})
 public class GetMoviesServlet extends HttpServlet {
-
+    /*
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
         PrintWriter out = response.getWriter();
@@ -52,5 +50,5 @@ public class GetMoviesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
-    }
+    }*/
 }

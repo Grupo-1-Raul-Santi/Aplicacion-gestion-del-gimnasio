@@ -1,6 +1,5 @@
 package com.sanvalero.gimnasio.servlet;
 
-import com.sanvalero.gimnasio.dao.MovieDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "remove-movie", urlPatterns = {"/remove-movie"})
 public class RemoveMovieServlet extends HttpServlet {
-
+    /*
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
         int movieId = Integer.parseInt(request.getParameter("id"));
@@ -32,5 +31,5 @@ public class RemoveMovieServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
-    }
+    }*/
 }

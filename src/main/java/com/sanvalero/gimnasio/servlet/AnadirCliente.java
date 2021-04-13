@@ -1,7 +1,8 @@
 package com.sanvalero.gimnasio.servlet;
 
-import com.sanvalero.gimnasio.dao.MovieDAO;
-import com.sanvalero.gimnasio.domain.Movie;
+import com.sanvalero.gimnasio.dao.Conexion;
+import com.sanvalero.gimnasio.dao.SocioDao;
+import com.sanvalero.gimnasio.domain.Socio;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -14,35 +15,36 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet que añade una película a la base de datos
  */
-@WebServlet(name = "add-movie", urlPatterns = {"/add-movie"})
-public class AddMovieServlet extends HttpServlet {
+@WebServlet(name = "anadir-socio", urlPatterns = {"/anadir-socio"})
+public class AnadirCliente extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
-        String title = request.getParameter("title");
-        String director = request.getParameter("director");
-        int duration = Integer.parseInt(request.getParameter("duration"));
-        String category = request.getParameter("category");
-        boolean viewed = request.getParameter("viewed").equals("on");
-        
-        Movie movie = new Movie(title, director, duration, category, viewed);
-        MovieDAO movieDAO = new MovieDAO();
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String dni = request.getParameter("dni");
+        String direccion = request.getParameter("direccion");
+
+        Conexion conexion = new Conexion();
+        conexion.connect();
+        Socio socio = new Socio(nombre, apellido, dni, direccion);
+        SocioDao socioDao = new SocioDao(conexion);
+
         try {
-            movieDAO.addMovie(movie);
-            
+            socioDao.crearSocio(socio);
+
             PrintWriter out = response.getWriter();
-            response.sendRedirect("myform.jsp?status=ok");
+            response.sendRedirect("haztesocio.jsp?status=ok");
         } catch (SQLException sqle) {
-            response.sendRedirect("myform.jsp?status=error");
+            response.sendRedirect("haztesocio.jsp?status=error");
         }
     }
-    
-    
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
