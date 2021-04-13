@@ -1,7 +1,6 @@
+package com.sanvalero.gimnasio.dao;
 
-package com.sanvalero.netflix.dao;
-
-import com.sanvalero.netflix.domain.Movie;
+import com.sanvalero.gimnasio.domain.Movie;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,17 +9,17 @@ import java.util.ArrayList;
 
 public class MovieDAO {
 
-    private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final String URL_CONEXION = "jdbc:mysql://localhost:3306/netflix";
-    private final String USUARIO = "netflixuser";
-    private final String CONTRASENA = "netflix1234";
-    
+    private final String DRIVER = "oracle.jdbc.OracleDriver";
+    private final String URL_CONEXION = "jdbc:oracle:thin:@localhost:1521:XE";
+    private final String USUARIO = "GESTION";
+    private final String CONTRASENA = "1234";
+
     private Connection connection;
-    
+
     public MovieDAO() {
         connect();
     }
-    
+
     /**
      * Conecta con la base de datos
      */
@@ -34,7 +33,7 @@ public class MovieDAO {
             sqle.printStackTrace();
         }
     }
-    
+
     /**
      * Desconecta de la base de datos
      */
@@ -45,16 +44,17 @@ public class MovieDAO {
             sqle.printStackTrace();
         }
     }
-    
+
     /**
      * Añade una pelicula a la base de datos
+     *
      * @param movie La pelicula con la información que se quiere registrar
-     * @throws SQLException 
+     * @throws SQLException
      */
     public void addMovie(Movie movie) throws SQLException {
-        String sql = "INSERT INTO movies (title, director, duration, category, viewed) " +
-                "VALUES (?, ?, ?, ?, ?)";
-        
+        String sql = "INSERT INTO movies (title, director, duration, category, viewed) "
+                + "VALUES (?, ?, ?, ?, ?)";
+
         PreparedStatement sentencia = connection.prepareStatement(sql);
         sentencia.setString(1, movie.getTitle());
         sentencia.setString(2, movie.getDirector());
@@ -63,28 +63,31 @@ public class MovieDAO {
         sentencia.setBoolean(5, movie.isViewed());
         sentencia.executeUpdate();
     }
-    
+
     /**
      * Obtiene la lista de peliculas de la base de datos
+     *
      * @return Una colección con las peliculas
      */
-    public ArrayList<Movie> getAllMovies() throws SQLException {        
+    public ArrayList<Movie> getAllMovies() throws SQLException {
         return new ArrayList<>();
     }
-    
+
     /**
      * Elimina una película
+     *
      * @param id El id de la pelicula a eliminar
      */
     public void removeMovie(int id) {
-        
+
     }
-    
+
     /**
      * Modifica la información de una pelicula
+     *
      * @param movie La película con la información a modificar
      */
     public void modifyMovie(Movie movie) {
-        
+
     }
 }
