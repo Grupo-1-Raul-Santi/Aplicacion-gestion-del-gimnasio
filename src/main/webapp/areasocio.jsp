@@ -19,6 +19,12 @@
         <%
             String nombre = request.getParameter("nombre");
             String apellido = request.getParameter("apellido");
+            if (nombre == null) {
+                    nombre = " ";
+                }
+            if (apellido == null) {
+                    apellido = " ";
+                }
         %> 
         Nombre:
         <div><p><%= nombre %></p></div>

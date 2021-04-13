@@ -61,8 +61,8 @@ public class SocioDao {
         ResultSet rs = sentencia.executeQuery();
         while (rs.next()) {
             Socio socioAux = new Socio();
-            socioAux.setIdSocio(rs.getString(1));
-            socioAux.setIdSocio(rs.getString(2));
+            socioAux.setNombre(rs.getString(1));
+            socioAux.setApellido(rs.getString(2));
             socios.add(socioAux);
         }
         return socios;

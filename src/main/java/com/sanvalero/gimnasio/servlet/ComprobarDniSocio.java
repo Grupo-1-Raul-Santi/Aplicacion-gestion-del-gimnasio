@@ -10,6 +10,7 @@ import com.sanvalero.gimnasio.dao.SocioDao;
 import com.sanvalero.gimnasio.domain.Socio;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -36,6 +37,7 @@ public class ComprobarDniSocio extends HttpServlet{
         Conexion conexion = new Conexion();
         conexion.connect();
         Socio socio = new Socio();
+        socio.setDni(request.getParameter("dni"));
         SocioDao sociodao = new SocioDao(conexion);
         socios = sociodao.listarNombreApellido(socio);
         for (Socio socioAux : socios) {
@@ -43,9 +45,11 @@ public class ComprobarDniSocio extends HttpServlet{
             apellido = socioAux.getApellido();
         }
 
+
         PrintWriter out = response.getWriter();
-        response.sendRedirect("areasocio.jsp?nombre=nombre");
-        response.sendRedirect("areasocio.jsp?apellido=apellido");
+        //response.sendRedirect("areasocio.jsp?nombre=nombre");
+        //response.sendRedirect("areasocio.jsp?apellido=apellido");ç
+        response.sendRedirect("areasocio.jsp?nombre=" + nombre + "&apellido=" + apellido);
     }
     
     @Override
