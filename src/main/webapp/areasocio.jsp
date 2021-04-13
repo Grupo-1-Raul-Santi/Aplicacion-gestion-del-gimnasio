@@ -21,8 +21,8 @@
             String apellido = request.getParameter("apellido");
         %> 
         Nombre:
-        <div><p><%=nombre%></p></div>
+        <div><p><%= nombre %></p></div>
         Apellido
-        <div><p><%=apellido%></p></div>
+        <div><p><%= apellido %></p></div>
     </body>
 </html>
