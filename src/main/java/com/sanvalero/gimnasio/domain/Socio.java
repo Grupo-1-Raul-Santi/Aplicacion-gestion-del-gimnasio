@@ -12,11 +12,16 @@ import java.util.Objects;
  * @author Raul
  */
 public class Socio extends Persona {
+
     private String idSocio;
 
     public Socio(String idSocio, String nombre, String apellido, String dni, String direccion) {
         super(nombre, apellido, dni, direccion);
         this.idSocio = idSocio;
+    }
+
+    public Socio(String nombre, String apellido, String dni, String direccion) {
+        super(nombre, apellido, dni, direccion);
     }
 
     public Socio() {
@@ -66,7 +71,6 @@ public class Socio extends Persona {
     public String toString() {
         return "Socio{" + "idSocio=" + idSocio + '}';
     }
-
 
     @Override
     public boolean equals(Object obj) {
