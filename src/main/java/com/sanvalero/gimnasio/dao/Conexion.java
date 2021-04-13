@@ -5,10 +5,46 @@
  */
 package com.sanvalero.gimnasio.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  *
  * @author Raul
  */
 public class Conexion {
+    private Connection conexion;
+    private final String DRIVER = "oracle.jdbc.OracleDriver";
+    private final String URL_CONEXION = "jdbc:oracle:thin:@localhost:1521:XE";
+    private final String USUARIO = "RAULCOROE";
+    private final String CONTRASENA = "1234";
     
+    public Connection getConexion(){
+        return conexion;
+    }
+    /**
+     * Método que permite conectar el proyecto a la BBDD
+     */
+    public void connect() {
+        try {
+            Class.forName(DRIVER);
+            conexion = DriverManager.getConnection(URL_CONEXION, USUARIO, CONTRASENA);
+        } catch (ClassNotFoundException cnfe) {
+            cnfe.printStackTrace();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+    }
+    
+    /**
+     * Metodo que desconecta la BBDD
+     */
+    public void desconectar(){
+        try {
+            conexion.close();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+    }
 }
