@@ -24,10 +24,10 @@ public class AnadirCliente extends HttpServlet {
         String apellido = request.getParameter("apellido");
         String dni = request.getParameter("dni");
         String direccion = request.getParameter("direccion");
+        Socio socio = new Socio(nombre, apellido, dni, direccion);
 
         Conexion conexion = new Conexion();
         conexion.connect();
-        Socio socio = new Socio(nombre, apellido, dni, direccion);
         SocioDao socioDao = new SocioDao(conexion);
 
         try {

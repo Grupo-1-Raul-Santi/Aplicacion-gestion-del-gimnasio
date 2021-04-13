@@ -18,7 +18,7 @@ public class Conexion {
     private Connection conexion;
     private final String DRIVER = "oracle.jdbc.driver.OracleDriver";
     private final String URL_CONEXION = "jdbc:oracle:thin:@localhost:1521:XE";
-    private final String USUARIO = "GESTION";
+    private final String USUARIO = "RAULCOROE";
     private final String CONTRASENA = "1234";
 
     public Connection getConexion() {
@@ -33,7 +33,7 @@ public class Conexion {
             Class.forName(DRIVER);
             conexion = DriverManager.getConnection(URL_CONEXION, USUARIO, CONTRASENA);
             if (conexion != null) {
-                System.out.println("Conexion exitosa a GESTIPARK"); // CAMBIAR NOMBRE DE LA CONEXION
+                System.out.println("Conexion exitosa a GIMNASIO"); // CAMBIAR NOMBRE DE LA CONEXION
             } else {
                 System.out.println("Conexion fallida");
             }
