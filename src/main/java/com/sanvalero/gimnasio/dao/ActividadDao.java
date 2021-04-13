@@ -7,13 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ActividadDao {
+
     private Conexion conexion;
     private int confirm;
 
     public ActividadDao(Conexion conexion) {
         this.conexion = conexion;
     }
-    
+
     public int crearActividad(Actividad act) throws SQLException {
         String sql = "INSERT INTO ACTIVIDADES (DESCRIPCION, ID_TIPO, ID_SALA, ID_MONITOR) VALUES (?, ?, ?, ?)";
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
@@ -44,7 +45,7 @@ public class ActividadDao {
             Sala salaAux = new Sala();
             Monitor monAux = new Monitor();
             Actividad actAux = new Actividad();
-            
+
             actAux.setIdActividad(rs.getString(1));
             actAux.setDescripcion(rs.getString(2));
             tipoAux.setIdTipo(rs.getString(3));
@@ -53,6 +54,23 @@ public class ActividadDao {
             actAux.setSala(salaAux);
             monAux.setIdMonitor(rs.getString(5));
             actAux.setMonitor(monAux);
+            actividades.add(actAux);
+        }
+        return actividades;
+    }
+
+    public ArrayList<Actividad> listarTiposSalasActividad() throws SQLException {
+        ArrayList<Actividad> actividades = new ArrayList<>();
+        String sql = "SELECT T.NOMBRE_TIPO, S.NOMBRE_SALA FROM ACTIVIDADES A "
+                + "INNER JOIN TIPOS T ON T.ID_TIPO = A.ID_TIPO INNER JOIN SALAS S "
+                + "ON S.ID_SALA = A.ID_SALA";
+        PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
+
+        ResultSet rs = sentencia.executeQuery();
+        while (rs.next()) {
+            Actividad act = new Actividad();
+            act.setDescripcion(rs.getString(1) + " en " + rs.getString(2));
+            actividades.add(act);
         }
         return actividades;
     }

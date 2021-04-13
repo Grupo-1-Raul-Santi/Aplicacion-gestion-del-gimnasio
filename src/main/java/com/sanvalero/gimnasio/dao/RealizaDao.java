@@ -57,6 +57,7 @@ public class RealizaDao {
             actAux.setIdActividad(rs.getString(2));
             reaAux.setActividad(actAux);
             reaAux.setFecha(rs.getString(3));
+            realizaciones.add(reaAux);
         }
         return realizaciones;
     }
