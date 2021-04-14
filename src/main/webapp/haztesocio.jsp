@@ -6,7 +6,7 @@
         <title>Hazte socio</title>
     </head>
     <body>
-        <h1>Ejemplo de formulario web</h1>
+        <h1>Hazte socio</h1>
         <form method="post" action="anadir-socio">
             Nombre:
             <input type="text" name="nombre"/><br/>
