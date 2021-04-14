@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet que añade una película a la base de datos
  */
-@WebServlet(name = "anadir-socio", urlPatterns = {"/anadir-socio"})
-public class AnadirCliente extends HttpServlet {
+@WebServlet(name = "anadir-socio-admin", urlPatterns = {"/anadir-socio-admin"})
+public class AnadirClientesAdmin extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
@@ -34,9 +34,9 @@ public class AnadirCliente extends HttpServlet {
             socioDao.crearSocio(socio);
 
             PrintWriter out = response.getWriter();
-            response.sendRedirect("haztesocio.jsp?status=ok");
+            response.sendRedirect("areaadminsocio.jsp?status=ok");
         } catch (SQLException sqle) {
-            response.sendRedirect("haztesocio.jsp?status=error");
+            response.sendRedirect("areaadminsocio.jsp?status=error");
         }
     }
 
