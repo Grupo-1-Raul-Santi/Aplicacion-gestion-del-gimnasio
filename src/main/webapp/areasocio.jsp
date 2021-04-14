@@ -74,7 +74,8 @@
                 conexion.connect();
                 ActividadDao actDao = new ActividadDao(conexion);
 
-                act = actDao.listarTiposSalasActividad();%>
+                act = actDao.listarTiposSalasActividad();
+            %>
 
             <select name='Actividades'>
                 <%
