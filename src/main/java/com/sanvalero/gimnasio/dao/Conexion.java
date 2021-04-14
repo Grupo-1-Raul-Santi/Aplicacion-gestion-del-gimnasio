@@ -18,11 +18,17 @@ public class Conexion {
     private Connection conexion;
     private final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 
-    /*private final String URL_CONEXION = "jdbc:oracle:thin:@192.168.1.55:1521/XE";
-    private final String USUARIO = "GESTION_GYM";*/
-
     private final String URL_CONEXION = "jdbc:oracle:thin:@localhost:1521:XE";
+    // Conexion Santi
     private final String USUARIO = "GESTION";
+    /* // Conexion Raul
+        private final String USUARIO = "RAULCOROE";
+     */
+
+    /* // Conexion Lara
+    private final String URL_CONEXION = "jdbc:oracle:thin:@192.168.1.55:1521/XE";
+    private final String USUARIO = "GESTION_GYM";*
+     */
     private final String CONTRASENA = "1234";
 
     public Connection getConexion() {
