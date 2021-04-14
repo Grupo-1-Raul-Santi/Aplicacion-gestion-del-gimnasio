@@ -32,7 +32,7 @@
         <p>Apellido</p>
         <div><p><%= apellido%></p></div>
         <p>Actividades</p>
-        <div><%
+        <%
             PrintWriter outPrint = response.getWriter();
             ArrayList<Actividad> act = new ArrayList<>();
             Conexion conexion = new Conexion();
@@ -42,6 +42,7 @@
             outPrint.println("<select id='option' name='Actividades' placeholder ='Actividad'>");
             
             for (Actividad actividad : act) {
+
                 outPrint.println("<option value='" + actividad.getIdActividad()+ "'>"+ actividad.getTipo().getNombreTipo() + "</option>");
             }
             outPrint.println("</select>");
@@ -54,5 +55,19 @@
 }s
             </script>
             <p>confirm</<p>
+=======
+                outPrint.println("<option value='1'>" + actividad.getDescripcion() + "</option>");
+            }
+            outPrint.println("</select>");
+        %>
+        <select name="Actividades">
+            <option value="1">Windows Vista</option> 
+            <option value="2">Windows 7</option> 
+            <option value="3">Windows XP</option>
+            <option value="10">Fedora</option> 
+            <option value="11">Debian</option> 
+            <option value="12">Suse</option> 
+        </select>
+>>>>>>> feature2
     </body>
 </html>

@@ -74,6 +74,9 @@ public class ActividadDao {
             act.setIdActividad(rs.getString(1));
             tipoAux.setNombreTipo(rs.getString(2));
             act.setTipo(tipoAux);
+
+            act.setDescripcion(rs.getString(2) + " en " + rs.getString(3));
+
             actividades.add(act);
         }
         return actividades;
