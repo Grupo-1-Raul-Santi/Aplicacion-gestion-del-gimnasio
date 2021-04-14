@@ -27,7 +27,7 @@ public class GetMoviesServlet extends HttpServlet {
             for (Movie movie : movies) {
                 out.println("<li>" + movie.getTitle() + " <a href='remove-movie?id=" + movie.getId() + "'>Eliminar</a></li>");
             }
-            // FIXME pelicula de ejemplo (eliminar cuando se desarrolle el listado)
+            //FIXME pelicula de ejemplo (eliminar cuando se desarrolle el listado)
             out.println("<li>Pelicula de ejemplo</li> <a href='remove-movie?id=23'>Eliminar</a></li>");
             out.println("</ul>");
 
