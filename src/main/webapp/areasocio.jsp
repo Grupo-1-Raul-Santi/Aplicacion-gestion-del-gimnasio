@@ -9,6 +9,32 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Area socio</title>
+        <script src="js/jquery-1.12.4-jquery.min.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            function country_change() {
+                var country = $("#country").val();
+                $.ajax({type: "POST",
+                    url: "state.jsp",
+                    data: "country_id=" + country,
+                    cache: false,
+                    success: function (response) {
+                        $("#state").html(response);
+                    }
+                });
+            }
+            function state_change() {
+                var state = $("#state").val();
+                $.ajax({
+                    type: "POST",
+                    url: "city.jsp",
+                    data: "state id=" + state,
+                    cache: false,
+                    success: function (response) {
+                        $("#city").html(response);
+                    }
+                });
+            }
+        </script> 
     </head>
     <body>
         <h1>Formulario</h1>
