@@ -92,6 +92,7 @@ public class ActividadDao {
             actAux.setIdActividad(rs.getString(1));
             salaAux.setNombre(rs.getString(2));
             actAux.setSala(salaAux);
+            actividades.add(actAux);
         }
         return actividades;
     }

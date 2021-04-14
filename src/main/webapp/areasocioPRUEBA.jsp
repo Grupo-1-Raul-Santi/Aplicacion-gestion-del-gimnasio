@@ -18,7 +18,6 @@
         <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
         <script type="text/javascript">
             function country_change() {
-                console.log("cambia de valor");
                 var actividad = $("#actividad").val();                
                 $.ajax({
                     type: "POST",
