@@ -1,8 +1,7 @@
 package com.sanvalero.gimnasio.servlet;
 
-import com.sanvalero.gimnasio.dao.Conexion;
-import com.sanvalero.gimnasio.dao.SocioDao;
-import com.sanvalero.gimnasio.domain.Socio;
+import com.sanvalero.gimnasio.dao.*;
+import com.sanvalero.gimnasio.domain.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -15,28 +14,26 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet que añade una película a la base de datos
  */
-@WebServlet(name = "anadir-socio-admin", urlPatterns = {"/anadir-socio-admin"})
-public class AnadirClientesAdmin extends HttpServlet {
+@WebServlet(name = "anadir-sala", urlPatterns = {"/anadir-sala"})
+public class AnadirSalaServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
         String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String dni = request.getParameter("dni");
-        String direccion = request.getParameter("direccion");
-        Socio socio = new Socio(nombre, apellido, dni, direccion);
+        int extension = Integer.parseInt(request.getParameter("extension"));
+        Sala sala = new Sala(nombre, extension);
 
         Conexion conexion = new Conexion();
         conexion.connect();
-        SocioDao socioDao = new SocioDao(conexion);
+        SalaDao saladao = new SalaDao(conexion);
 
         try {
-            socioDao.crearSocio(socio);
+            saladao.crearSala(sala);
 
             PrintWriter out = response.getWriter();
-            response.sendRedirect("areaadmin.jsp?statusSocio=ok");
+            response.sendRedirect("areaadmin.jsp?statusSala=ok");
         } catch (SQLException sqle) {
-            response.sendRedirect("areaadmin.jsp?statusSocio=error");
+            response.sendRedirect("areaadmin.jsp?statusSala=error");
         }
     }
 
