@@ -52,9 +52,9 @@ public class SocioDao {
         }
         return socios;
     }
-    
+
     public Socio listarSocioId(String id) throws SQLException {
-        String sql = "SELECT * FROM SOCIOS WHERE ID_SOCIO = "+id;
+        String sql = "SELECT * FROM SOCIOS WHERE ID_SOCIO = " + id;
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
         ResultSet rs = sentencia.executeQuery();
         Socio socioAux = new Socio();
@@ -67,7 +67,7 @@ public class SocioDao {
         }
         return socioAux;
     }
-    
+
     public int editarSocio(Socio socio) throws SQLException {
         String sql = "UPDATE SOCIOS SET NOMBRE_SOCIO = ?, APELLIDO_SOCIO = ?, DNI = ?, DIRECCION = ? WHERE ID_SOCIO = ?";
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
@@ -79,17 +79,18 @@ public class SocioDao {
         confirm = sentencia.executeUpdate();
         return confirm;
     }
-    
+
     public ArrayList<Socio> listarNombreApellido(Socio socio) throws SQLException {
         ArrayList<Socio> socios = new ArrayList<>();
-        String sql = "SELECT NOMBRE_SOCIO, APELLIDO_SOCIO FROM SOCIOS WHERE DNI = ?";
+        String sql = "SELECT ID_SOCIO, NOMBRE_SOCIO, APELLIDO_SOCIO FROM SOCIOS WHERE DNI = ?";
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
         sentencia.setString(1, socio.getDni());
         ResultSet rs = sentencia.executeQuery();
         while (rs.next()) {
             Socio socioAux = new Socio();
-            socioAux.setNombre(rs.getString(1));
-            socioAux.setApellido(rs.getString(2));
+            socioAux.setIdSocio(rs.getString(1));
+            socioAux.setNombre(rs.getString(2));
+            socioAux.setApellido(rs.getString(3));
             socios.add(socioAux);
         }
         return socios;

@@ -43,7 +43,7 @@
         </script> 
     </head> 
     <body> 
-        <div class-"container"> 
+        <div class="container"> 
             <h1>Formulario</h1>
             <form method="post" action="comprobar-dni-socio">
                 <p>DNI</p>
@@ -51,6 +51,7 @@
                 <input type="submit" value="Validar"/>
             </form>
             <%
+                String idSocio = request.getParameter("idSocio");
                 String nombre = request.getParameter("nombre");
                 String apellido = request.getParameter("apellido");
                 if (nombre == null) {
@@ -60,6 +61,8 @@
                     apellido = " ";
                 }
             %> 
+            <p>ID socio</p>
+            <div><p><%= idSocio%></p></div>
             <p>Nombre</p>
             <div><p><%= nombre%></p></div>
             <p>Apellido</p>
@@ -75,7 +78,7 @@
 
             <select name='Actividades'>
                 <%
-                for (Actividad actividad : act) {%>
+                    for (Actividad actividad : act) {%>
                 <option value="<%= actividad.getIdActividad()%>"> <%= actividad.getDescripcion()%> </option>
                 <%}%>
             </select> 
