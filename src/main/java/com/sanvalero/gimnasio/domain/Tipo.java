@@ -12,11 +12,16 @@ import java.util.Objects;
  * @author Raul
  */
 public class Tipo {
+
     private String idTipo;
     private String nombreTipo;
 
     public Tipo(String idTipo, String nombreTipo) {
         this.idTipo = idTipo;
+        this.nombreTipo = nombreTipo;
+    }
+
+    public Tipo(String nombreTipo) {
         this.nombreTipo = nombreTipo;
     }
 
@@ -44,7 +49,6 @@ public class Tipo {
         return "Tipo{" + "idTipo=" + idTipo + ", nombreTipo=" + nombreTipo + '}';
     }
 
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -65,6 +69,5 @@ public class Tipo {
         }
         return true;
     }
-    
-    
+
 }

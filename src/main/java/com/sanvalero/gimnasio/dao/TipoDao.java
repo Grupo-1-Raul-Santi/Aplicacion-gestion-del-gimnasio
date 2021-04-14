@@ -32,11 +32,10 @@ public class TipoDao {
         return confirm;
     }
 
-    public ArrayList<Tipo> listarTipo(Tipo tipo) throws SQLException {
+    public ArrayList<Tipo> listarTipo() throws SQLException {
         ArrayList<Tipo> tipos = new ArrayList<>();
-        String sql = "SELECT * FROM TIPOS WHERE ID_TIPO = ?";
+        String sql = "SELECT * FROM TIPOS";
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
-        sentencia.setString(1, tipo.getIdTipo());
         ResultSet rs = sentencia.executeQuery();
         while (rs.next()) {
             Tipo tipoAux = new Tipo();

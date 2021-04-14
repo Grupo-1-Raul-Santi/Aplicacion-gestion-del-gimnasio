@@ -61,15 +61,21 @@ public class ActividadDao {
 
     public ArrayList<Actividad> listarTiposSalasActividad() throws SQLException {
         ArrayList<Actividad> actividades = new ArrayList<>();
-        String sql = "SELECT A.ID_ACTIVIDAD, T.NOMBRE_TIPO, S.NOMBRE_SALA FROM ACTIVIDADES A "
-                + "INNER JOIN TIPOS T ON T.ID_TIPO = A.ID_TIPO INNER JOIN SALAS S "
-                + "ON S.ID_SALA = A.ID_SALA";
+
+        String sql = "SELECT A.ID_ACTIVIDAD, T.NOMBRE_TIPO, S.NOMBRE_SALA FROM "
+                + "ACTIVIDADES A INNER JOIN TIPOS T ON T.ID_TIPO = A.ID_TIPO "
+                + "INNER JOIN SALAS S ON S.ID_SALA = A.ID_SALA";
+
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
 
         ResultSet rs = sentencia.executeQuery();
         while (rs.next()) {
             Actividad act = new Actividad();
+
+            Tipo tipoAux = new Tipo();
+
             act.setIdActividad(rs.getString(1));
+
             act.setDescripcion(rs.getString(2) + " en " + rs.getString(3));
 
             actividades.add(act);

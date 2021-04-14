@@ -38,12 +38,13 @@
             Conexion conexion = new Conexion();
             conexion.connect();
             ActividadDao actDao = new ActividadDao(conexion);
+
             act = actDao.listarTiposSalasActividad();%>
 
         <select name='Actividades'>
             <%
                 for (Actividad actividad : act) {%>
-            <option value='1'> <%= actividad.getDescripcion()%> </option>
+            <option value="<%= actividad.getIdActividad()%>"> <%= actividad.getDescripcion()%> </option>
             <%}%>
         </select>
     </body>
