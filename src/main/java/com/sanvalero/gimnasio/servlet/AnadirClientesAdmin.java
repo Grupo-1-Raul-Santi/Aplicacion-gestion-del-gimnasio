@@ -34,9 +34,9 @@ public class AnadirClientesAdmin extends HttpServlet {
             socioDao.crearSocio(socio);
 
             PrintWriter out = response.getWriter();
-            response.sendRedirect("areaadminsocio.jsp?status=ok");
+            response.sendRedirect("areaadmin.jsp?status=ok");
         } catch (SQLException sqle) {
-            response.sendRedirect("areaadminsocio.jsp?status=error");
+            response.sendRedirect("areaadmin.jsp?status=error");
         }
     }
 
