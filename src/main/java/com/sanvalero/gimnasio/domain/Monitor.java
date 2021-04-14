@@ -14,9 +14,8 @@ import java.util.Objects;
 public class Monitor extends Persona{
     private String idMonitor;
 
-    public Monitor(String idMonitor, String nombre, String apellido, String dni, String direccion) {
+    public Monitor(String nombre, String apellido, String dni, String direccion) {
         super(nombre, apellido, dni, direccion);
-        this.idMonitor = idMonitor;
     }
     
     public Monitor() {

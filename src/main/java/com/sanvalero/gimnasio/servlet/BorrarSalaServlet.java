@@ -1,8 +1,7 @@
 package com.sanvalero.gimnasio.servlet;
 
-import com.sanvalero.gimnasio.dao.Conexion;
-import com.sanvalero.gimnasio.dao.SocioDao;
-import com.sanvalero.gimnasio.domain.Socio;
+import com.sanvalero.gimnasio.dao.*;
+import com.sanvalero.gimnasio.domain.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -16,20 +15,20 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet que elimina una película a la base de datos
  */
-@WebServlet(name = "borrar-socio", urlPatterns = {"/borrar-socio"})
-public class BorrarSocioServlet extends HttpServlet {
+@WebServlet(name = "borrar-sala", urlPatterns = {"/borrar-sala"})
+public class BorrarSalaServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException, SQLException {
-        Socio socio = new Socio();
-        socio.setIdSocio(request.getParameter("id"));
+        Sala sala = new Sala();
+        sala.setIdSala((request.getParameter("id")));
 
         Conexion conexion = new Conexion();
         conexion.connect();
-        SocioDao socioDao = new SocioDao(conexion);
-        socioDao.borrarSocio(socio);
+        SalaDao salaDao = new SalaDao(conexion);
+        salaDao.borrarSala(sala);
 
-        response.sendRedirect("areaadmin.jsp?messageSocio=Socio eliminado");
+        response.sendRedirect("areaadmin.jsp?messageSala=Sala eliminada");
     }
 
     @Override
@@ -37,7 +36,7 @@ public class BorrarSocioServlet extends HttpServlet {
         try {
             processRequest(req, resp);
         } catch (SQLException ex) {
-            Logger.getLogger(BorrarSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BorrarSalaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -46,7 +45,7 @@ public class BorrarSocioServlet extends HttpServlet {
         try {
             processRequest(req, resp);
         } catch (SQLException ex) {
-            Logger.getLogger(BorrarSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BorrarSalaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

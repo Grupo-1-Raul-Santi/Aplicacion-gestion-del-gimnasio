@@ -29,8 +29,16 @@ body {
     background-color: #fff!important;
 }
 
-p, a {
+h1, h2, h3, h4, h5, p, a, ul, li, ::placeholder {
     font-family: "D-DIN", Montserrat, Arial, sans-serif;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+h2 {
+    font-size: 2.5em!important;
 }
 
 a {
@@ -41,6 +49,17 @@ a {
   max-width: 960px;
 }
 
+section {
+    margin: 7em 0;
+}
+
+img {
+    width: 100%;
+}
+
+hr {
+    margin-bottom: 4em!important;
+}
 
 /*
 ** HEADER
@@ -96,17 +115,16 @@ a {
     font-weight: 400;
 }
 
-
+/*
+** HERO BANNER
+*/
 
 .banner-hero {
-    background-image: url('../images/hero-image.jpg');
     padding: 16em 0;
-    background-size: cover;
-    background-position: center;
     margin: -1em 0!important;
 }
 
-.banner-hero h2 {
+.banner-hero h1 {
     text-align: center;
     font-family: "D-DIN", Montserrat, Arial, sans-serif;
     font-weight: bold;
@@ -159,12 +177,81 @@ a {
 }
 
 /*
-** SECCIONES HOME
+** FOOTER
 */
 
 footer .logo {
     color: #000;
     font-size: 1.5em;
+}
+
+/*
+** PÁGINAS INTERIORES
+*/
+
+.banner-hero.inner-pages {
+    padding: 8em 0;
+}
+
+.inner-text {
+    margin-bottom: 1.7em;
+}
+
+/*
+** FORMULARIOS
+*/
+
+input {
+    width: 100%;
+    border-radius: 0;
+    border: 1px solid #919191;
+    padding: 0.5em;
+}
+
+::placeholder {
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.form-field {
+    margin: 0.5em 0 1em 0;
+}
+
+.form-field p {
+    text-transform: uppercase;
+    font-family: "D-DIN", Montserrat, Arial, sans-serif;
+}
+
+.button-dark {
+    margin: 1.5em 0;
+    padding: 2em 0!important;
+    background-color: #000!important;
+    border-radius: 0!important;
+    border: 1px solid #000!important;
+    font-family: "D-DIN", Montserrat, Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 0.8em!important;
+    letter-spacing: 0.2em;
+    transition: .15s ease-in-out;
+}
+
+.button-dark:hover {
+    background-color: #f0f0f0!important;
+    color: #000!important;
+}
+
+.message {
+    padding: 1em 0 0.3em 0;
+    margin: 1em 0;
+    text-align: center;
+}
+
+.message.msg-ok {
+    background-color: #7ed77e;
+}
+
+.message.msg-fail {
+    background-color: #ff2d2d;
 }
 
 /*

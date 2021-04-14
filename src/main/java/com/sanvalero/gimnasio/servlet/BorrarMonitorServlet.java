@@ -1,7 +1,9 @@
 package com.sanvalero.gimnasio.servlet;
 
 import com.sanvalero.gimnasio.dao.Conexion;
+import com.sanvalero.gimnasio.dao.MonitorDao;
 import com.sanvalero.gimnasio.dao.SocioDao;
+import com.sanvalero.gimnasio.domain.Monitor;
 import com.sanvalero.gimnasio.domain.Socio;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,20 +18,20 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet que elimina una película a la base de datos
  */
-@WebServlet(name = "borrar-socio", urlPatterns = {"/borrar-socio"})
-public class BorrarSocioServlet extends HttpServlet {
+@WebServlet(name = "borrar-monitor", urlPatterns = {"/borrar-monitor"})
+public class BorrarMonitorServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException, SQLException {
-        Socio socio = new Socio();
-        socio.setIdSocio(request.getParameter("id"));
+        Monitor monitor = new Monitor();
+        monitor.setIdMonitor(request.getParameter("id"));
 
         Conexion conexion = new Conexion();
         conexion.connect();
-        SocioDao socioDao = new SocioDao(conexion);
-        socioDao.borrarSocio(socio);
+        MonitorDao monitorDao = new MonitorDao(conexion);
+        monitorDao.borrarMonitor(monitor);
 
-        response.sendRedirect("areaadmin.jsp?messageSocio=Socio eliminado");
+        response.sendRedirect("areaadmin.jsp?messageMonitor=Monitor eliminado");
     }
 
     @Override
@@ -37,7 +39,7 @@ public class BorrarSocioServlet extends HttpServlet {
         try {
             processRequest(req, resp);
         } catch (SQLException ex) {
-            Logger.getLogger(BorrarSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BorrarMonitorServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -46,7 +48,7 @@ public class BorrarSocioServlet extends HttpServlet {
         try {
             processRequest(req, resp);
         } catch (SQLException ex) {
-            Logger.getLogger(BorrarSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BorrarMonitorServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
