@@ -40,22 +40,8 @@
             ActividadDao actDao = new ActividadDao(conexion);
             act = actDao.listarTiposSalasActividad();
             outPrint.println("<select id='option' name='Actividades' placeholder ='Actividad'>");
-            
-            for (Actividad actividad : act) {
 
-                outPrint.println("<option value='" + actividad.getIdActividad()+ "'>"+ actividad.getTipo().getNombreTipo() + "</option>");
-            }
-            outPrint.println("</select>");
-            
-                outPrint.println("<");
-            %></div>
-            <script>
-                if (document.getElementById(option)[0].value == 1) {
-                    var confirm = document.getElementById(option).value;
-}s
-            </script>
-            <p>confirm</<p>
-=======
+            for (Actividad actividad : act) {
                 outPrint.println("<option value='1'>" + actividad.getDescripcion() + "</option>");
             }
             outPrint.println("</select>");
@@ -68,6 +54,5 @@
             <option value="11">Debian</option> 
             <option value="12">Suse</option> 
         </select>
->>>>>>> feature2
     </body>
 </html>
