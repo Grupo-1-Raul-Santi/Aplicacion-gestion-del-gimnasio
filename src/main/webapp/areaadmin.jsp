@@ -18,7 +18,6 @@
             conexion.connect();
             SocioDao socioDao = new SocioDao(conexion);
             ArrayList<Socio> socios = socioDao.listarSocio();
-
         %>
         <ul>
             <%            for (Socio socio : socios) {
@@ -57,7 +56,6 @@
         if (statusSocio == null) {
             statusSocio = "";
         }
-
         if (statusSocio.equals("ok")) {
             out.println("<p style='color:green'>El socio se ha registrado con éxito</p>");
         } else if (statusSocio.equals("error")) {
@@ -70,7 +68,6 @@
     <%
         TipoDao tipoDao = new TipoDao(conexion);
         ArrayList<Tipo> tipos = tipoDao.listarTipo();
-
     %>
     <ul>
         <%            for (Tipo tipo : tipos) {
@@ -101,7 +98,6 @@
         if (statusTipo == null) {
             statusTipo = "";
         }
-
         if (statusTipo.equals("ok")) {
             out.println("<p style='color:green'>El tipo de actividad se ha registrado con éxito</p>");
         } else if (statusTipo.equals("error")) {
@@ -115,7 +111,6 @@
     <%
         MonitorDao monitorDao = new MonitorDao(conexion);
         ArrayList<Monitor> monitores = monitorDao.listarMonitor();
-
     %>
     <ul>
         <%            for (Monitor monitor : monitores) {
@@ -155,7 +150,6 @@
         if (statusMonitor == null) {
             statusMonitor = "";
         }
-
         if (statusMonitor.equals("ok")) {
             out.println("<p style='color:green'>El monitor se ha registrado con éxito</p>");
         } else if (statusMonitor.equals("error")) {
@@ -169,7 +163,6 @@
     <%
         SalaDao saladao = new SalaDao(conexion);
         ArrayList<Sala> salas = saladao.listarSala();
-
     %>
     <ul>
         <%            for (Sala sala : salas) {
@@ -203,7 +196,6 @@
         if (statusSala == null) {
             statusSala = "";
         }
-
         if (statusSala.equals("ok")) {
             out.println("<p style='color:green'>La sala se ha registrado con éxito</p>");
         } else if (statusSala.equals("error")) {
