@@ -35,19 +35,18 @@ public class SocioDao {
         return confirm;
     }
 
-    public ArrayList<Socio> listarSocio(Socio socio) throws SQLException {
+    public ArrayList<Socio> listarSocio() throws SQLException {
         ArrayList<Socio> socios = new ArrayList<>();
-        String sql = "SELECT * FROM SOCIOS WHERE ID_SOCIO = ?";
+        String sql = "SELECT * FROM SOCIOS";
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
-        sentencia.setString(1, socio.getIdSocio());
         ResultSet rs = sentencia.executeQuery();
         while (rs.next()) {
             Socio socioAux = new Socio();
             socioAux.setIdSocio(rs.getString(1));
-            socioAux.setIdSocio(rs.getString(2));
-            socioAux.setIdSocio(rs.getString(3));
-            socioAux.setIdSocio(rs.getString(4));
-            socioAux.setIdSocio(rs.getString(5));
+            socioAux.setNombre(rs.getString(2));
+            socioAux.setApellido(rs.getString(3));
+            socioAux.setDni(rs.getString(4));
+            socioAux.setDireccion(rs.getString(5));
             socios.add(socioAux);
         }
         return socios;
