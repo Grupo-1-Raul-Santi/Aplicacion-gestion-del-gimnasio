@@ -71,11 +71,9 @@ public class ActividadDao {
         while (rs.next()) {
             Actividad act = new Actividad();
 
-            Tipo tipoAux = new Tipo();
-
             act.setIdActividad(rs.getString(1));
 
-            act.setDescripcion(rs.getString(2) + " en " + rs.getString(3));
+            act.setDescripcion(rs.getString(2));
 
             actividades.add(act);
         }
