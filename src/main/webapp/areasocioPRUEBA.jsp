@@ -51,6 +51,7 @@
                 <input type="submit" value="Validar"/>
             </form>
             <%
+                String idSocio = request.getParameter("idSocio");
                 String nombre = request.getParameter("nombre");
                 String apellido = request.getParameter("apellido");
                 if (nombre == null) {
@@ -65,6 +66,8 @@
             <p>Apellido</p>
             <div><p><%= apellido%></p></div>
             <p>Actividades</p>
+            <p>id Socio</p>
+            <div><p><%= idSocio%></p></div>
             <%
                 ArrayList<Actividad> act = new ArrayList<>();
                 Conexion conexion = new Conexion();
