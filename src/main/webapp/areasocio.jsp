@@ -32,27 +32,28 @@
         <p>Apellido</p>
         <div><p><%= apellido%></p></div>
         <p>Actividades</p>
-        <div><%
+        <%
             PrintWriter outPrint = response.getWriter();
             ArrayList<Actividad> act = new ArrayList<>();
             Conexion conexion = new Conexion();
             conexion.connect();
             ActividadDao actDao = new ActividadDao(conexion);
-            act = actDao.listarTiposSalasActividad();
-            outPrint.println("<select id='option' name='Actividades' placeholder ='Actividad'>");
-            
-            for (Actividad actividad : act) {
-                outPrint.println("<option value='" + actividad.getIdActividad()+ "'>"+ actividad.getTipo().getNombreTipo() + "</option>");
-            }
-            outPrint.println("</select>");
-            
-                outPrint.println("<");
-            %></div>
-            <script>
-                if (document.getElementById(option)[0].value == 1) {
-                    var confirm = document.getElementById(option).value;
-}s
-            </script>
-            <p>confirm</<p>
+            act = actDao.listarTiposSalasActividad();%>
+
+        <select name='Actividades'>
+            <%
+                for (Actividad actividad : act) {%>
+            <option value='1'> <%= actividad.getDescripcion()%> </option>
+            <%}%>
+        </select>
+
+        <select name="Actividades">
+            <option value="1">Windows Vista</option> 
+            <option value="2">Windows 7</option> 
+            <option value="3">Windows XP</option>
+            <option value="10">Fedora</option> 
+            <option value="11">Debian</option> 
+            <option value="12">Suse</option> 
+        </select>
     </body>
 </html>

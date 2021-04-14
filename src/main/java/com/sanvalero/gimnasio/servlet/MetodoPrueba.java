@@ -15,29 +15,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet que añade una película a la base de datos
  */
-@WebServlet(name = "anadir-socio-admin", urlPatterns = {"/anadir-socio-admin"})
-public class AnadirClientesAdmin extends HttpServlet {
+@WebServlet(name = "prueba", urlPatterns = {"/prueba"})
+public class MetodoPrueba extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String dni = request.getParameter("dni");
-        String direccion = request.getParameter("direccion");
-        Socio socio = new Socio(nombre, apellido, dni, direccion);
+        String prueba = request.getParameter("value");
 
-        Conexion conexion = new Conexion();
-        conexion.connect();
-        SocioDao socioDao = new SocioDao(conexion);
+        response.sendRedirect("areasocio.jsp?prueba=" + prueba);
 
-        try {
-            socioDao.crearSocio(socio);
-
-            PrintWriter out = response.getWriter();
-            response.sendRedirect("areaadmin.jsp?statusSocio=ok");
-        } catch (SQLException sqle) {
-            response.sendRedirect("areaadmin.jsp?statusSocio=error");
-        }
     }
 
     @Override
