@@ -29,7 +29,7 @@ public class BorrarSocioServlet extends HttpServlet {
         SocioDao socioDao = new SocioDao(conexion);
         socioDao.borrarSocio(socio);
 
-        response.sendRedirect("areaadminsocio.jsp?message=Socio eliminado");
+        response.sendRedirect("areaadmin.jsp?message=Socio eliminado");
     }
 
     @Override
