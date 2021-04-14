@@ -27,17 +27,17 @@
                 <div class="row">
                     <div class="col-lg-3 col-xs-12">
                         <div class="nav flex-column nav-pills admin-sidebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Socios</a>
-                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Actividades</a>
-                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Monitores</a>
-                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Salas</a>
+                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#socios" role="tab" aria-controls="v-pills-home" aria-selected="true">Socios</a>
+                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#actividades" role="tab" aria-controls="v-pills-profile" aria-selected="false">Actividades</a>
+                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#monitores" role="tab" aria-controls="v-pills-messages" aria-selected="false">Monitores</a>
+                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#salas" role="tab" aria-controls="v-pills-settings" aria-selected="false">Salas</a>
                         </div>
                     </div>
 
                     <div class="col-lg-9 col-xs-12">
                         <div class="tab-content" id="v-pills-tabContent">
                             <!--- INICIO PESTAÑA SOCIOS --->
-                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <div class="tab-pane fade show active" id="socios" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#ver-socios" role="tab" aria-controls="home" aria-selected="true">Listado de socios</a>
@@ -46,7 +46,6 @@
                                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#anadir-socios" role="tab" aria-controls="profile" aria-selected="false">Añadir socios</a>
                                     </li>
                                 </ul>
-                            </div>
 
                             <div class="tab-content" id="myTabContent">
                                 <!--- INICIO SUBPESTAÑA LISTAR SOCIOS --->
@@ -138,11 +137,12 @@
 
                                 </div>
                                 <!--- FIN SUBPESTAÑA AÑADIR SOCIOS --->
+                                </div>
                             </div>
                             <!--- FIN PESTAÑA SOCIOS --->
-
+                        
                             <!--- INICIO PESTAÑA ACTIVIDADES --->
-                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                            <div class="tab-pane fade" id="actividades" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                 <h1>Lista de tipos</h1>
                                 <%
                                     TipoDao tipoDao = new TipoDao(conexion);
@@ -186,7 +186,10 @@
                                     }
                                 %>
                             </div>
-                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                            <!--- FIN PESTAÑA ACTIVIDADES --->
+                        
+                            <!--- INICIO PESTAÑA MONITORES --->
+                            <div class="tab-pane fade" id="monitores" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                 <h1>Lista de monitores</h1>
                                 <%
                                     MonitorDao monitorDao = new MonitorDao(conexion);
@@ -237,7 +240,10 @@
                                     }
                                 %>
                             </div>
-                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                            <!--- FIN PESTAÑA MONITORES --->
+                            
+                            <!--- INICIO PESTAÑA SALAS --->
+                            <div class="tab-pane fade" id="salas" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                                 <h1>Lista de salas</h1>
                                 <%
                                     SalaDao saladao = new SalaDao(conexion);
@@ -284,7 +290,7 @@
                                     }
                                 %>
                             </div>
-                        </div>
+                            <!--- FIN PESTAÑA SALAS --->
                     </div>
                 </div>
             </section>
