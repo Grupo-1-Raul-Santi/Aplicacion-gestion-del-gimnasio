@@ -8,14 +8,14 @@
             <h5>Area privada</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="link-secondary" href="areasocio.jsp">Area socios</a></li>
-                <li><a class="link-secondary" href="#">Area administradores</a></li>
+                <li><a class="link-secondary" href="areaadmin.jsp">Area administradores</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
             <h5>Nuestro club</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="link-secondary" href="haztesocio.jsp">Hazte socio</a></li>
-                <li><a class="link-secondary" href="#">Reserva tu actividad</a></li>
+                <li><a class="link-secondary" href="areasocio.jsp">Reserva tu actividad</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
