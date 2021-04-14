@@ -69,8 +69,11 @@ public class ActividadDao {
         ResultSet rs = sentencia.executeQuery();
         while (rs.next()) {
             Actividad act = new Actividad();
+            Tipo tipoAux = new Tipo();
+            
             act.setIdActividad(rs.getString(1));
-            act.setDescripcion(rs.getString(2) + " en " + rs.getString(3));
+            tipoAux.setNombreTipo(rs.getString(2));
+            act.setTipo(tipoAux);
             actividades.add(act);
         }
         return actividades;
