@@ -22,7 +22,7 @@ public class Conexion {
     private final String USUARIO = "GESTION_GYM";*/
 
     private final String URL_CONEXION = "jdbc:oracle:thin:@localhost:1521:XE";
-    private final String USUARIO = "RAULCOROE";
+    private final String USUARIO = "GESTION";
     private final String CONTRASENA = "1234";
 
     public Connection getConexion() {
