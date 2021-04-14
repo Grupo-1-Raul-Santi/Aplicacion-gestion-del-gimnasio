@@ -33,6 +33,18 @@ public class MonitorDao {
         confirm = sentencia.executeUpdate();
         return confirm;
     }
+    
+    public int editarMonitor(Monitor monitor) throws SQLException {
+        String sql = "UPDATE MONITORES SET NOMBRE_MONITOR = ?, APELLIDO_MONITOR = ?, DNI = ?, DIRECCION = ? WHERE ID_MONITOR = ?";
+        PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
+        sentencia.setString(1, monitor.getNombre());
+        sentencia.setString(2, monitor.getApellido());
+        sentencia.setString(3, monitor.getDni());
+        sentencia.setString(4, monitor.getDireccion());
+        sentencia.setString(5, monitor.getIdMonitor());
+        confirm = sentencia.executeUpdate();
+        return confirm;
+    }
 
     public ArrayList<Monitor> listarMonitor() throws SQLException {
         ArrayList<Monitor> monitores = new ArrayList<>();
@@ -49,5 +61,20 @@ public class MonitorDao {
             monitores.add(monitorAux);
         }
         return monitores;
+    }
+    
+    public Monitor listarMonitorId(String id) throws SQLException {
+        String sql = "SELECT * FROM MONITORES WHERE ID_MONITOR = "+id;
+        PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
+        ResultSet rs = sentencia.executeQuery();
+        Monitor monitorAux = new Monitor();
+        while (rs.next()) {
+            monitorAux.setIdMonitor(rs.getString(1));
+            monitorAux.setNombre(rs.getString(2));
+            monitorAux.setApellido(rs.getString(3));
+            monitorAux.setDni(rs.getString(4));
+            monitorAux.setDireccion(rs.getString(5));
+        }
+        return monitorAux;
     }
 }
