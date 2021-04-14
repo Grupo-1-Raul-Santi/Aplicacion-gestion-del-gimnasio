@@ -32,7 +32,20 @@
         <p>Apellido</p>
         <div><p><%= apellido%></p></div>
         <p>Actividades</p>
-        
+        <%
+            PrintWriter outPrint = response.getWriter();
+            ArrayList<Actividad> act = new ArrayList<>();
+            Conexion conexion = new Conexion();
+            conexion.connect();
+            ActividadDao actDao = new ActividadDao(conexion);
+            act = actDao.listarTiposSalasActividad();
+            outPrint.println("<select name='Actividades'>");
+
+            for (Actividad actividad : act) {
+                outPrint.println("<option value='1'>" + actividad.getDescripcion() + "</option>");
+            }
+            outPrint.println("</select>");
+        %>
         <select name="Actividades">
             <option value="1">Windows Vista</option> 
             <option value="2">Windows 7</option> 
