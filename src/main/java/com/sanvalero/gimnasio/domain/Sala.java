@@ -16,8 +16,7 @@ public class Sala {
     private String nombre;
     private int extension;
 
-    public Sala(String idSala, String nombre, int extension) {
-        this.idSala = idSala;
+    public Sala(String nombre, int extension) {
         this.nombre = nombre;
         this.extension = extension;
     }

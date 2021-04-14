@@ -34,11 +34,10 @@ public class MonitorDao {
         return confirm;
     }
 
-    public ArrayList<Monitor> listarMonitor(Monitor monitor) throws SQLException {
+    public ArrayList<Monitor> listarMonitor() throws SQLException {
         ArrayList<Monitor> monitores = new ArrayList<>();
-        String sql = "SELECT * FROM MONITORES WHERE ID_MONITOR = ?";
+        String sql = "SELECT * FROM MONITORES";
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
-        sentencia.setString(1, monitor.getIdMonitor());
         ResultSet rs = sentencia.executeQuery();
         while (rs.next()) {
             Monitor monitorAux = new Monitor();

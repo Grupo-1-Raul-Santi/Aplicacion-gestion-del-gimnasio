@@ -32,11 +32,10 @@ public class SalaDao {
         return confirm;
     }
 
-    public ArrayList<Sala> listarSala(Sala sala) throws SQLException {
+    public ArrayList<Sala> listarSala() throws SQLException {
         ArrayList<Sala> salas = new ArrayList<>();
-        String sql = "SELECT * FROM SALAS WHERE ID_SALA = ?";
+        String sql = "SELECT * FROM SALAS";
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
-        sentencia.setString(1, sala.getIdSala());
         ResultSet rs = sentencia.executeQuery();
         while (rs.next()) {
             Sala salaAux = new Sala();
