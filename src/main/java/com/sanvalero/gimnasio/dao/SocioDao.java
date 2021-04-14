@@ -1,5 +1,6 @@
 package com.sanvalero.gimnasio.dao;
 
+import com.sanvalero.gimnasio.domain.Monitor;
 import com.sanvalero.gimnasio.domain.Sala;
 import com.sanvalero.gimnasio.domain.Socio;
 import java.sql.PreparedStatement;
@@ -50,6 +51,33 @@ public class SocioDao {
             socios.add(socioAux);
         }
         return socios;
+    }
+    
+    public Socio listarSocioId(String id) throws SQLException {
+        String sql = "SELECT * FROM SOCIOS WHERE ID_SOCIO = "+id;
+        PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
+        ResultSet rs = sentencia.executeQuery();
+        Socio socioAux = new Socio();
+        while (rs.next()) {
+            socioAux.setIdSocio(rs.getString(1));
+            socioAux.setNombre(rs.getString(2));
+            socioAux.setApellido(rs.getString(3));
+            socioAux.setDni(rs.getString(4));
+            socioAux.setDireccion(rs.getString(5));
+        }
+        return socioAux;
+    }
+    
+    public int editarSocio(Socio socio) throws SQLException {
+        String sql = "UPDATE SOCIOS SET NOMBRE_SOCIO = ?, APELLIDO_SOCIO = ?, DNI = ?, DIRECCION = ? WHERE ID_SOCIO = ?";
+        PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
+        sentencia.setString(1, socio.getNombre());
+        sentencia.setString(2, socio.getApellido());
+        sentencia.setString(3, socio.getDni());
+        sentencia.setString(4, socio.getDireccion());
+        sentencia.setString(5, socio.getIdSocio());
+        confirm = sentencia.executeUpdate();
+        return confirm;
     }
     
     public ArrayList<Socio> listarNombreApellido(Socio socio) throws SQLException {
