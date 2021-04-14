@@ -1,17 +1,102 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Gimnasios Metropolitan | Fitness & Bienestar</title>
+        <meta name="description" content="Conoce nuestro gimnasio y accede al área de socio, entre otras funcionalidades.">
+        <link href="images/favicon.ico" type="image/x-icon" rel="icon">
+        
+        <!--- HOJAS DE ESTILOS --->
+        <link rel="stylesheet" href="css/style.css">
+        
+        <!--- BOOTSTRAP --->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <img src="images/logo.jpg"/>
+        <header class="site-header sticky-top">
+            <div class="site-header__top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <a class="py-2" href="/Gimnasio/" aria-label="Logo">
+                                <h1 class="logo">Metropolitan</h1>
+                            </a>
+                        </div>
+                        <div class="col-6 site-header__top__area">
+                            <a class="py-2 d-none d-md-inline-block" href="haztesocio.jsp">Hazte socio</a>
+                            <a class="py-2 d-none d-md-inline-block" href="areasocio.jsp">Area socios</a>
+                            <a class="py-2 d-none d-md-inline-block" href="#">Area administrador</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <div class="banner-hero">
+                <h2>Nos vemos en el club</h2>
+            </div>
+            
+            <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+                <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+                  <div class="my-3 py-3">
+                      <h2 class="display-5 light"><a href="haztesocio.jsp">Únete a nosotros</a></h2>
+                    <p class="lead">Hazte socio de nuestro CLUB METROPOLITAN y aprovecha nuestras exclusivas ofertas.</p>
+                  </div>
+                    <div class="bg-light shadow-sm mx-auto unete-socios" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+ 
+                    </div>
+                </div>
+                <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                  <div class="my-3 p-3">
+                      <h2 class="display-5 dark"><a href="areasocio.jsp">Reserva tu actividad</a></h2>
+                    <p class="lead">Desde nuestra app podrás reservar tu actividad y ver más información sobre el horario disponible.</p>
+                  </div>
+                  <div class="bg-dark shadow-sm mx-auto reservar-actividad" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+                </div>
+            </div>
+        </main>
+       
+        <footer class="container py-5">
+            <div class="row">
+              <div class="col-12 col-md">
+                  <p class="logo">Metropolitan</p>
+              </div>
+              <div class="col-6 col-md">
+                <h5>Area privada</h5>
+                <ul class="list-unstyled text-small">
+                  <li><a class="link-secondary" href="areasocio.jsp">Area socios</a></li>
+                  <li><a class="link-secondary" href="#">Area administradores</a></li>
+                </ul>
+              </div>
+              <div class="col-6 col-md">
+                <h5>Nuestro club</h5>
+                <ul class="list-unstyled text-small">
+                  <li><a class="link-secondary" href="haztesocio.jsp">Hazte socio</a></li>
+                  <li><a class="link-secondary" href="#">Reserva tu actividad</a></li>
+                </ul>
+              </div>
+              <div class="col-6 col-md">
+                <h5>Desarrollado por</h5>
+                <ul class="list-unstyled text-small">
+                  <li><a class="link-secondary" href="https://github.com/santir6" target="_blank">Santi Ballestin</a></li>
+                  <li><a class="link-secondary" href="https://github.com/raulcoroe" target="_blank">Raúl Martín</a></li>
+                  <li><a class="link-secondary" href="https://github.com/lara-ferrer" target="_blank">Lara Ferrer</a></li>
+                </ul>
+              </div>
+            </div>
+         
+            <!--- SCRIPTS --->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+        <footer>
+        
+                <!-- 
         <p>Accede una <a href="mypage.jsp">página JSP de ejemplo</a></p>
         <p>Hazte socio <a href="haztesocio.jsp">aqui</a></p>
         <p>Area socio <a href="areasocio.jsp">aqui</a></p>
         <p>Area administrador <a href="areaadminsocio.jsp">aqui</a></p>
         <p>Desde aqui podrás ver el <a href="movies">listado de peliculas (con servlet)</a></p>
         <p>Desde aqui podrás ver el <a href="movies.jsp">listado de peliculas (con JSP)</a></p>
+        -->
     </body>
 </html>
