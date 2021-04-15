@@ -43,7 +43,6 @@
         </script> 
     </head> 
     <body> 
-        <div class-"container"> 
             <h1>Formulario</h1>
             <form method="post" action="comprobar-dni-socio">
                 <p>DNI</p>
@@ -51,6 +50,7 @@
                 <input type="submit" value="Validar"/>
             </form>
             <%
+                String idSocio = request.getParameter("idSocio");
                 String nombre = request.getParameter("nombre");
                 String apellido = request.getParameter("apellido");
                 if (nombre == null) {
@@ -60,6 +60,8 @@
                     apellido = " ";
                 }
             %> 
+            <p>ID socio</p>
+            <div><p><%= idSocio%></p></div>
             <p>Nombre</p>
             <div><p><%= nombre%></p></div>
             <p>Apellido</p>
@@ -73,41 +75,13 @@
 
                 act = actDao.listarTiposSalasActividad();%>
 
-            <select name='Actividades'>
+            <select name='Actividades' id="country" onchange="country_change()">
                 <%
                 for (Actividad actividad : act) {%>
                 <option value="<%= actividad.getIdActividad()%>"> <%= actividad.getDescripcion()%> </option>
                 <%}%>
             </select> 
-
-            <div class="form-group"> 
-                <label class="col-sm-1 control-label">Country</label> 
-                <div class="col-sm-3"> 
-                    <select class="form-control" id="country" onchange="country_change()"> 
-                        <option value="" selected="selected"> - select country - </option> 
-                        <%
-                            String dburl = "jdbc:mysql://localhost:3306/onchange_select_option_db";
-                            String dbusername = "root";
-                            String dbpassword = "";
-                            try {
-                                Class.forName("com.mysql.jdbc.Driver");
-                                Connection con = DriverManager.getConnection(dburl, dbusername, dbpassword);
-                                PreparedStatement pstmt = null;
-                                pstmt = con.prepareStatement("SELECT * FROM country");
-                                ResultSet rs = pstmt.executeQuery();
-                                while (rs.next()) {
-                        %> 
-                        <option value=" <%=rs.getInt("country_id")%>"> 
-                            <%=rs.getString("country_name")%> 
-                        </option> 
-                        <%
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        %>
-                    </select> 
-                </div> 
+          
                 <label class="col-sm-1 control-label">State</label> 
                 <div class="col-sm-3"> 
                     <select class="form-control" id="state" onchange="state_change()"> 

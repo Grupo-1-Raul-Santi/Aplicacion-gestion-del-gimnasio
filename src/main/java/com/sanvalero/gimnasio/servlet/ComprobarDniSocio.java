@@ -33,6 +33,7 @@ public class ComprobarDniSocio extends HttpServlet{
 
         String nombre = "";
         String apellido = "";
+        String idSocio = "";
         ArrayList<Socio> socios = new ArrayList<>();
         Conexion conexion = new Conexion();
         conexion.connect();
@@ -41,6 +42,7 @@ public class ComprobarDniSocio extends HttpServlet{
         SocioDao sociodao = new SocioDao(conexion);
         socios = sociodao.listarNombreApellido(socio);
         for (Socio socioAux : socios) {
+            idSocio = socioAux.getIdSocio();
             nombre = socioAux.getNombre();
             apellido = socioAux.getApellido();
         }
@@ -49,7 +51,7 @@ public class ComprobarDniSocio extends HttpServlet{
         PrintWriter out = response.getWriter();
         //response.sendRedirect("areasocio.jsp?nombre=nombre");
         //response.sendRedirect("areasocio.jsp?apellido=apellido");ç
-        response.sendRedirect("areasocio.jsp?nombre=" + nombre + "&apellido=" + apellido);
+        response.sendRedirect("areasocioPrueba.jsp?nombre=" + nombre + "&apellido=" + apellido + "&idSocio" + idSocio);
     }
     
     @Override
