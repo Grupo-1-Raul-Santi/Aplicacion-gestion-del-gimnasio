@@ -49,7 +49,6 @@
         </script> 
     </head> 
     <body> 
-        <div class="container"> 
             <h1>Formulario</h1>
             <form method="post" action="comprobar-dni-socio">
                 <p>DNI</p>
@@ -88,7 +87,7 @@
                     <option value="<%= tipo.getIdTipo()%>"><%= tipo.getNombreTipo()%></option>
                     <%}%>
                 </select> 
-
+                
                 <select id="sala" onchange="sala_change()">
                     <option selected="selected"> --Seleccionar sala-- </option> 
                 </select> 
