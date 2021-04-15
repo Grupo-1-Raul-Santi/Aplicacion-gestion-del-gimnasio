@@ -22,11 +22,11 @@ public class Conexion {
     private final String CONTRASENA = "1234";*/
 
     private final String URL_CONEXION = "jdbc:oracle:thin:@localhost:1521:XE";
-    private final String USUARIO = "RAULCOROE";
+    // private final String USUARIO = "RAULCOROE";
 
     //private final String URL_CONEXION = "jdbc:oracle:thin:@localhost:1521:XE";
     // Conexion Santi
-    //private final String USUARIO = "GESTION";
+    private final String USUARIO = "GESTION";
     //Conexion Raul
 
 

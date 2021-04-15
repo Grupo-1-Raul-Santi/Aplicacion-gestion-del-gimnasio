@@ -62,9 +62,8 @@ public class ActividadDao {
     public ArrayList<Actividad> listarTiposSalasActividad() throws SQLException {
         ArrayList<Actividad> actividades = new ArrayList<>();
 
-        String sql = "SELECT A.ID_ACTIVIDAD, T.NOMBRE_TIPO, S.NOMBRE_SALA FROM "
-                + "ACTIVIDADES A INNER JOIN TIPOS T ON T.ID_TIPO = A.ID_TIPO "
-                + "INNER JOIN SALAS S ON S.ID_SALA = A.ID_SALA";
+        String sql = "SELECT A.ID_ACTIVIDAD, T.NOMBRE_TIPO FROM "
+                + "ACTIVIDADES A INNER JOIN TIPOS T ON T.ID_TIPO = A.ID_TIPO ";
 
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
 
@@ -72,13 +71,28 @@ public class ActividadDao {
         while (rs.next()) {
             Actividad act = new Actividad();
 
-            Tipo tipoAux = new Tipo();
-
             act.setIdActividad(rs.getString(1));
 
-            act.setDescripcion(rs.getString(2) + " en " + rs.getString(3));
+            act.setDescripcion(rs.getString(2));
 
             actividades.add(act);
+        }
+        return actividades;
+    }
+
+    public ArrayList<Actividad> listarSalaActividad(Actividad act) throws SQLException {
+        ArrayList<Actividad> actividades = new ArrayList<>();
+        String sql = "SELECT A.ID_ACTIVIDAD, S.NOMBRE_SALA FROM ACTIVIDADES A INNER JOIN SALAS S ON S.ID_SALA = A.ID_SALA WHERE A.ID_ACTIVIDAD = ?";
+        PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
+        sentencia.setString(1, act.getIdActividad());
+        ResultSet rs = sentencia.executeQuery();
+        while (rs.next()) {
+            Actividad actAux = new Actividad();
+            Sala salaAux = new Sala();
+            actAux.setIdActividad(rs.getString(1));
+            salaAux.setNombre(rs.getString(2));
+            actAux.setSala(salaAux);
+            actividades.add(actAux);
         }
         return actividades;
     }
