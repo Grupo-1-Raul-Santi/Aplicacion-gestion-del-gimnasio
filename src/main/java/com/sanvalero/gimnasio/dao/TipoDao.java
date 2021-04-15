@@ -1,11 +1,14 @@
 package com.sanvalero.gimnasio.dao;
 
+import com.sanvalero.gimnasio.domain.Actividad;
 import com.sanvalero.gimnasio.domain.Sala;
 import com.sanvalero.gimnasio.domain.Tipo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TipoDao {
 
@@ -42,6 +45,24 @@ public class TipoDao {
             tipoAux.setIdTipo(rs.getString(1));
             tipoAux.setNombreTipo(rs.getString(2));
             tipos.add(tipoAux);
+        }
+        return tipos;
+    }
+    
+    public ArrayList<Tipo> listarTiposSalasActividad() throws SQLException {
+        ArrayList<Tipo> tipos = new ArrayList<>();
+
+        String sql = "SELECT T.ID_TIPO, T.NOMBRE_TIPO FROM ACTIVIDADES A INNER JOIN "
+                + "TIPOS T ON T.ID_TIPO = A.ID_TIPO GROUP BY T.NOMBRE_TIPO, T.ID_TIPO";
+
+        PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
+
+        ResultSet rs = sentencia.executeQuery();
+        while (rs.next()) {
+            Tipo tipo = new Tipo();
+            tipo.setIdTipo(rs.getString(1));
+            tipo.setNombreTipo(rs.getString(2));
+            tipos.add(tipo);
         }
         return tipos;
     }

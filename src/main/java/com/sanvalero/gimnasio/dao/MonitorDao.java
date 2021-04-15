@@ -1,6 +1,9 @@
 package com.sanvalero.gimnasio.dao;
 
+import com.sanvalero.gimnasio.domain.Actividad;
 import com.sanvalero.gimnasio.domain.Monitor;
+import com.sanvalero.gimnasio.domain.Sala;
+import com.sanvalero.gimnasio.domain.Tipo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -76,5 +79,25 @@ public class MonitorDao {
             monitorAux.setDireccion(rs.getString(5));
         }
         return monitorAux;
+    }
+    
+    public ArrayList<Monitor> listarMonitorActividad(Actividad act) throws SQLException {
+        ArrayList<Monitor> monitores = new ArrayList<>();
+        String sql = "SELECT M.ID_MONITOR, M.NOMBRE_MONITOR "
+                + "FROM ACTIVIDADES A INNER JOIN MONITORES M "
+                + "ON M.ID_MONITOR = A.ID_MONITOR "
+                + "WHERE A.ID_SALA= ? AND A.ID_TIPO= ? "
+                + "GROUP BY M.ID_MONITOR, M.NOMBRE_MONITOR";
+        PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
+        sentencia.setString(1, act.getSala().getIdSala());
+        sentencia.setString(2, act.getTipo().getIdTipo());
+        ResultSet rs = sentencia.executeQuery();
+        while (rs.next()) {
+            Monitor mon = new Monitor();
+            mon.setIdMonitor(rs.getString(1));
+            mon.setNombre(rs.getString(2));
+            monitores.add(mon);
+        }
+        return monitores;
     }
 }
