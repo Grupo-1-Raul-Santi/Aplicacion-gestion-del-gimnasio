@@ -18,13 +18,13 @@
         Tipo tipo = new Tipo();
         Actividad act = new Actividad();
 
-        
+
         sala.setIdSala(request.getParameter("idSala"));
         act.setSala(sala);
         tipo.setIdTipo(request.getParameter("idTipo"));
         act.setTipo(tipo);
-        
-        
+
+
         Conexion conexion = new Conexion();
         conexion.connect();
         MonitorDao monitordao = new MonitorDao(conexion);
