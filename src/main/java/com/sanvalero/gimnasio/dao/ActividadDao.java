@@ -62,8 +62,8 @@ public class ActividadDao {
     public ArrayList<Actividad> listarTiposSalasActividad() throws SQLException {
         ArrayList<Actividad> actividades = new ArrayList<>();
 
-        String sql = "SELECT A.ID_ACTIVIDAD, T.NOMBRE_TIPO FROM "
-                + "ACTIVIDADES A INNER JOIN TIPOS T ON T.ID_TIPO = A.ID_TIPO ";
+        String sql = "SELECT T.ID_TIPO, T.NOMBRE_TIPO FROM ACTIVIDADES A INNER JOIN "
+                + "TIPOS T ON T.ID_TIPO = A.ID_TIPO GROUP BY T.NOMBRE_TIPO, T.ID_TIPO; ";
 
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
 
