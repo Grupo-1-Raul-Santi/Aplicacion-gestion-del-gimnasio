@@ -58,4 +58,31 @@ public class ActividadDao {
         }
         return actividades;
     }
+
+    /**
+     * Devuelve el id de la actividad selecionada según el tipo de actividad, la
+     * sala y el monitor.
+     *
+     * @param act Objeto de tipo ciudad con ID_TIPO, ID_SALA y ID_MONITOR
+     * @return ID_ACTIVIDAD
+     * @throws SQLException
+     */
+    public Actividad listarIdActividad(Actividad act) throws SQLException {
+        String sql = "SELECT ID_ACTIVIDAD FROM ACTIVIDADES WHERE ID_TIPO = ? AND ID_SALA= ? AND ID_MONITOR= ?";
+        PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
+
+        sentencia.setString(1, act.getTipo().getIdTipo());
+        sentencia.setString(2, act.getSala().getIdSala());
+        sentencia.setString(3, act.getMonitor().getIdMonitor());
+
+        ResultSet rs = sentencia.executeQuery();
+        Actividad actAux = new Actividad();
+        
+        while (rs.next()) {
+
+            actAux.setIdActividad(rs.getString(1));
+
+        }
+        return actAux;
+    }
 }
