@@ -30,7 +30,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, p, a, ul, li, ::placeholder {
-    font-family: "D-DIN", Montserrat, Arial, sans-serif;
+    font-family: "D-DIN", Montserrat, Arial, sans-serif!important;
 }
 
 p {
@@ -60,6 +60,39 @@ img {
 hr {
     margin-bottom: 4em!important;
 }
+
+.display-none {
+    display: none;
+}
+
+.table>tbody {
+    background-color: #fff;
+}
+
+/*
+** MARGIN Y PADDING PERSONALIZADO
+*/
+
+.padding-1-vertical {
+    padding: 1em 0!important;
+}
+
+.padding-3-vertical {
+    padding: 3em 0!important;
+}
+
+.padding-6-vertical {
+    padding: 6em 0!important;
+}
+
+.margin-bottom-3 {
+    margin-bottom: 3em!important;
+}
+
+.margin-top-3 {
+    margin-top: 3em!important;
+}
+
 
 /*
 ** HEADER
@@ -106,7 +139,7 @@ hr {
 }
 
 .logo {
-    font-family: "Futura Book","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Futura Book","Helvetica Neue",Helvetica,Arial,sans-serif!important;
     color: #fff;
     top: 40px;
     letter-spacing: 9.4px;
@@ -126,7 +159,7 @@ hr {
 
 .banner-hero h1 {
     text-align: center;
-    font-family: "D-DIN", Montserrat, Arial, sans-serif;
+    font-family: "D-DIN", Montserrat, Arial, sans-serif!important;
     font-weight: bold;
     font-size: 5em;
     text-transform: uppercase;
@@ -197,12 +230,88 @@ footer .logo {
     margin-bottom: 1.7em;
 }
 
+/*
+** AREA SOCIO
+*/
+.bg-special-dark {
+    background-color: var(--light-grey)!important;
+}
+
+select {
+    padding: 1em 2em;
+    border-radius: 0;
+    background-color: #ecf0f6;
+}
+
+.custom-select {
+  font-family: 'D-DIN';
+  display: block;
+  width: auto!important;
+  font-size: 1.2em;
+  background-color: var(--light-blue-grey)!important;
+}
+
+.seleccion-actividad {
+    text-align: center;
+    margin: 2em 0!important;
+}
+
+.parallax {
+    background-image: url('../images/parallax.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10em 0;
+}
+
+.parallax h2 {
+    color: #fff!important;
+    text-align: center;
+}
 
 /*
-** PÁGINA ADMIN
+** AREA ADMIN
 */
 .nav-pills .nav-link.active {
     background-color: var(--dark-grey)!important;
+    color: #fff;
+    border-radius: 0;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: var(--light-grey)!important;
+    border-radius: 0;
+}
+
+.nav-pills .nav-link, .nav-tabs .nav-link {
+    color: var(--dark-grey);
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    background-color: var(--light-grey)!important;
+    border-radius: 0;
+}
+
+.nav-tabs .nav-link:hover {
+    border-radius: 0;
+}
+
+button.w-100.btn.btn-lg.btn-primary.button-dark.admin {
+    padding: 0.5em!important;
+}
+
+tr.row-hidden {
+    border-color: #fff!important;
+}
+
+.table td, .table th {
+    padding: 0.2em !important;
+    vertical-align: baseline!important;
+}
+
+.tab-pane h2 {
+    margin-top: 1em!important;
 }
 
 /*

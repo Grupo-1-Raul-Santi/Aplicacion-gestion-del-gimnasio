@@ -19,7 +19,7 @@
         <section class="container">
             <div class="row">
                 <div class="col-lg-6 col-xs-12">
-                    <img src="images/unete-socios.jpg">
+                    <img src="images/unete-socios.jpg" class="wow fadeInLeft" style="visibility: visible;animation-name: fadeInLeft;" data-wow-delay="0.2s">
                 </div>
                 
                 <div class="col-lg-6 col-xs-12">

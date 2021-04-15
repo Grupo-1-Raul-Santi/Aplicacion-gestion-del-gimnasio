@@ -29,8 +29,41 @@
     </div>
 
     <!--- SCRIPTS --->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    <footer>
+    <script src="js/wow.js"></script>
+    <script type="text/javascript">
+        new WOW().init();
+    </script>
+    
+    <script type="text/javascript">
+            function tipo_change() {
+                var tipo = $("#tipo").val();
+                $.ajax({
+                    type: "POST",
+                    url: "tipo.jsp",
+                    data: "idTipo=" + tipo,
+                    cache: false,
+                    success: function (response) {
+                        $("#sala").html(response);
+                    }
+                });
+            }
+            function sala_change() {
+                var sala = $("#sala").val();
+                var tipo = $("#tipo").val();
+                $.ajax({
+                    type: "POST",
+                    url: "sala.jsp",
+                    data: {idSala: sala, idTipo: tipo},
+                    cache: false,
+                    success: function (response) {
+                        $("#monitor").html(response);
+                    }
+                });
+            }
+        </script>
+     
+</footer>
