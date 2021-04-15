@@ -47,7 +47,7 @@ public class ComprobarDniSocio extends HttpServlet{
             apellido = socioAux.getApellido();
         }
 
-        response.sendRedirect("areasocioPRUEBA.jsp?nombre=" + nombre + "&apellido=" + apellido + "&idSocio=" + idSocio);
+        response.sendRedirect("areasocio.jsp?nombre=" + nombre + "&apellido=" + apellido + "&idSocio=" + idSocio);
     }
     
     @Override
