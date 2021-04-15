@@ -69,9 +69,7 @@
             <p>Apellido</p>
             <div><p><%= apellido%></p></div>
             <p>Actividades</p>
-            <input type="date" id="start" name="trip-start"
-       value="2018-07-22"
-       min="2018-01-01" max="2018-12-31">
+            
             <%
                 ArrayList<Actividad> act = new ArrayList<>();
                 Conexion conexion = new Conexion();
