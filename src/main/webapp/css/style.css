@@ -197,6 +197,14 @@ footer .logo {
     margin-bottom: 1.7em;
 }
 
+
+/*
+** PÁGINA ADMIN
+*/
+.nav-pills .nav-link.active {
+    background-color: var(--dark-grey)!important;
+}
+
 /*
 ** FORMULARIOS
 */
