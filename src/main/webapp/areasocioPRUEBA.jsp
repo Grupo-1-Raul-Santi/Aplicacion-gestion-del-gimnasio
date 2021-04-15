@@ -49,54 +49,70 @@
         </script> 
     </head> 
     <body> 
-            <h1>Formulario</h1>
-            <form method="post" action="comprobar-dni-socio">
-                <p>DNI</p>
-                <input type="text" name="dni"/><br/>
-                <input type="submit" value="Validar"/>
-            </form>
-            <%
-                String idSocio = request.getParameter("idSocio");
-                String nombre = request.getParameter("nombre");
-                String apellido = request.getParameter("apellido");
-                if (nombre == null) {
-                    nombre = " ";
-                }
-                if (apellido == null) {
-                    apellido = " ";
-                }
-            %> 
-            <p>Nombre</p>
-            <div><p><%= nombre%></p></div>
-            <p>Apellido</p>
-            <div><p><%= apellido%></p></div>
+        <h1>Formulario</h1>
+        <form method="post" action="comprobar-dni-socio">
+            <p>DNI</p>
+            <input type="text" name="dni"/><br/>
+            <input type="submit" value="Validar"/>
+        </form>
+        <%
+            String idSocio = request.getParameter("idSocio");
+            String nombre = request.getParameter("nombre");
+            String apellido = request.getParameter("apellido");
 
-            <%
-                ArrayList<Tipo> tipos = new ArrayList<>();
-                Conexion conexion = new Conexion();
-                conexion.connect();
-                TipoDao tipodao = new TipoDao(conexion);
-                tipos = tipodao.listarTiposSalasActividad();
-            %>
-            <form method="post" action="cita-socio">
-                <input type="text" name="idSocio" value="<%= idSocio%>"> <!--Ocultar este input -->
-                <select id="tipo" onchange="tipo_change()">
-                    <option selected="selected"> --Seleccionar actividad-- </option> 
-                    <%
-                    for (Tipo tipo : tipos) {%>
-                    <option value="<%= tipo.getIdTipo()%>"><%= tipo.getNombreTipo()%></option>
-                    <%}%>
-                </select> 
-                
-                <select id="sala" onchange="sala_change()">
-                    <option selected="selected"> --Seleccionar sala-- </option> 
-                </select> 
-                
-                <select id="monitor">
-                    <option selected="selected"> --Seleccionar monitor-- </option> 
-                </select> 
-                
-                <input type="submit" value="Reservar"/>
-            </form>
+            if (idSocio == null) {
+                idSocio = "";
+            }
+            if (nombre == null) {
+                nombre = " ";
+            }
+            if (apellido == null) {
+                apellido = " ";
+            }
+        %> 
+        <p>Nombre</p>
+        <div><p><%= nombre%></p></div>
+        <p>Apellido</p>
+        <div><p><%= apellido%></p></div>
+
+        <%
+            ArrayList<Tipo> tipos = new ArrayList<>();
+            Conexion conexion = new Conexion();
+            conexion.connect();
+            TipoDao tipodao = new TipoDao(conexion);
+            tipos = tipodao.listarTiposSalasActividad();
+        %>
+        <form method="post" action="cita-socio">
+            <input type="text" name="idSocio" value="<%= idSocio%>" required=""> <!--Ocultar este input -->
+            <select name="tipo" id="tipo" onchange="tipo_change()" >
+                <option selected="selected"> --Seleccionar actividad-- </option> 
+                <%
+                        for (Tipo tipo : tipos) {%>
+                <option value="<%= tipo.getIdTipo()%>" ><%= tipo.getNombreTipo()%></option>
+                <%}%>
+            </select> 
+
+            <select name="sala" id="sala" onchange="sala_change()" >
+                <option selected="selected"> --Seleccionar sala-- </option> 
+            </select> 
+
+            <select name="monitor" id="monitor" >
+                <option selected="selected"> --Seleccionar monitor-- </option> 
+            </select> 
+
+            <input type="submit" value="Reservar"/>
+        </form>
+        <%
+            String status = request.getParameter("status");
+            if (status == null) {
+                status = "";
+            }
+
+            if (status.equals("ok")) {
+                out.println("<div class='message msg-ok'><p>El cliente se ha citado con éxito</p></div>");
+            } else if (status.equals("error")) {
+                out.println("<div class='message msg-fail'><p>No se ha podido crear la cita</p></div>");
+            }
+        %>
     </body> 
 </html>
