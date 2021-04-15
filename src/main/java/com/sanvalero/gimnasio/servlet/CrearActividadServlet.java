@@ -31,46 +31,40 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Raul
  */
-@WebServlet(name = "cita-socio", urlPatterns = {"/cita-socio"})
-public class CitaSocioServlet extends HttpServlet {
+@WebServlet(name = "crear-actividad", urlPatterns = {"/crear-actividad"})
+public class CrearActividadServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException, SQLException {
-
+           ServletException, IOException, SQLException {
+       
+        String descripcion;
         Tipo tipo = new Tipo();
         Sala sala = new Sala();
-        Socio socio = new Socio();
         Monitor monitor = new Monitor();
         Actividad actividad = new Actividad();
 
-        socio.setIdSocio(request.getParameter("idSocio"));
-        System.out.println(socio.getIdSocio());
-
-        tipo.setIdTipo(request.getParameter("tipo"));
-        System.out.println(tipo.getIdTipo());
+        descripcion = request.getParameter("descripcionAux");
+        actividad.setDescripcion(descripcion);
+        
+        tipo.setIdTipo(request.getParameter("tipoAux"));
         actividad.setTipo(tipo);
 
-        sala.setIdSala(request.getParameter("sala"));
-        System.out.println(sala.getIdSala());
+        sala.setIdSala(request.getParameter("salaAux"));
         actividad.setSala(sala);
 
-        monitor.setIdMonitor(request.getParameter("monitor"));
-        System.out.println(monitor.getIdMonitor());
+        monitor.setIdMonitor(request.getParameter("monitorAux"));
         actividad.setMonitor(monitor);
 
         Conexion conexion = new Conexion();
         conexion.connect();
         ActividadDao actividadDao = new ActividadDao(conexion);
 
-        actividad = actividadDao.listarIdActividad(actividad);
-        Realiza realiza = new Realiza("16/04/2021", socio, actividad);
-        RealizaDao realizaDao = new RealizaDao(conexion);
 
         try {
-            realizaDao.crearRealizan(realiza);
-            response.sendRedirect("areasocio.jsp?status=ok");
+            actividadDao.crearActividad(actividad);
+            response.sendRedirect("areaadmin.jsp?crearActividad=ok");
         } catch (SQLException sqle) {
-            response.sendRedirect("areasocio.jsp?status=error");
+            response.sendRedirect("areaadmin.jsp?crearActividad=error");
         }
     }
 
@@ -80,7 +74,7 @@ public class CitaSocioServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(CitaSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CrearActividadServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -90,7 +84,7 @@ public class CitaSocioServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(CitaSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CrearActividadServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

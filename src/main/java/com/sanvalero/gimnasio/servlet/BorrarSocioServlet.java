@@ -27,9 +27,13 @@ public class BorrarSocioServlet extends HttpServlet {
         Conexion conexion = new Conexion();
         conexion.connect();
         SocioDao socioDao = new SocioDao(conexion);
-        socioDao.borrarSocio(socio);
-
-        response.sendRedirect("areaadmin.jsp?messageSocio=Socio eliminado");
+        
+        try {
+            socioDao.borrarSocio(socio);
+            response.sendRedirect("areaadmin.jsp?messageSocio=ok");
+        } catch (SQLException sqle) {
+            response.sendRedirect("areaadmin.jsp?messadeSocio=error");
+        }
     }
 
     @Override

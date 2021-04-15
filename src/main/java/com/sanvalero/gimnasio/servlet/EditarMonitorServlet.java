@@ -18,24 +18,29 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet que elimina una película a la base de datos
  */
-@WebServlet(name = "borrar-monitor", urlPatterns = {"/borrar-monitor"})
-public class BorrarMonitorServlet extends HttpServlet {
+@WebServlet(name = "editar-monitor", urlPatterns = {"/editar-monitor"})
+public class EditarMonitorServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException, SQLException {
-        Monitor monitor = new Monitor();
-        monitor.setIdMonitor(request.getParameter("id"));
 
+        Monitor monitor = new Monitor();
         Conexion conexion = new Conexion();
         conexion.connect();
+
+        monitor.setIdMonitor(request.getParameter("txtId"));
+        monitor.setNombre(request.getParameter("txtNom"));
+        monitor.setApellido(request.getParameter("txtApe"));
+        monitor.setDni(request.getParameter("txtDNI"));
+        monitor.setDireccion(request.getParameter("txtDirec"));
+
         MonitorDao monitorDao = new MonitorDao(conexion);
 
-        
         try {
-            monitorDao.borrarMonitor(monitor);
-            response.sendRedirect("areaadmin.jsp?messageMonitor=ok");
+            monitorDao.editarMonitor(monitor);
+            response.sendRedirect("areaadmin.jsp?statusMonitorEdit=ok");
         } catch (SQLException sqle) {
-            response.sendRedirect("areaadmin.jsp?messageMonitor=error");
+            response.sendRedirect("areaadmin.jsp?statusMonitorEdit=error");
         }
 
     }
@@ -45,7 +50,7 @@ public class BorrarMonitorServlet extends HttpServlet {
         try {
             processRequest(req, resp);
         } catch (SQLException ex) {
-            Logger.getLogger(BorrarMonitorServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BorrarSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -54,7 +59,7 @@ public class BorrarMonitorServlet extends HttpServlet {
         try {
             processRequest(req, resp);
         } catch (SQLException ex) {
-            Logger.getLogger(BorrarMonitorServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BorrarSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
