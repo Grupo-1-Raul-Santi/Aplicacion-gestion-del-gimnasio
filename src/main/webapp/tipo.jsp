@@ -1,3 +1,6 @@
+<%@page import="com.sanvalero.gimnasio.domain.Tipo"%>
+<%@page import="com.sanvalero.gimnasio.dao.SalaDao"%>
+<%@page import="com.sanvalero.gimnasio.domain.Sala"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.sanvalero.gimnasio.dao.ActividadDao"%>
 <%@page import="com.sanvalero.gimnasio.dao.Conexion"%>
@@ -8,21 +11,21 @@
 <%@page import="java.sql.Connection"%> 
 
 <%
-    if (request.getParameter("idActividad") != null) {
-        Actividad actividad = new Actividad();
+    if (request.getParameter("idTipo") != null) {
+        Tipo tipo = new Tipo();
 
-        actividad.setIdActividad(request.getParameter("idActividad")); //ACTIVIDADid
+        tipo.setIdTipo(request.getParameter("idTipo"));
 
         Conexion conexion = new Conexion();
         conexion.connect();
-        ActividadDao actividadDao = new ActividadDao(conexion);
-        ArrayList<Actividad> actividades = actividadDao.listarSalaActividad(actividad);
+        SalaDao saladao = new SalaDao(conexion);
+        ArrayList<Sala> salas = saladao.listarSalaActividad(tipo);
 
 
 %> 
 <option selected="selected">--Selecionar sala--</option>
-<%    for (Actividad actAux : actividades) {
+<%    for (Sala salaAux : salas) {
 %>
-<option value="<%= actAux.getIdActividad()%>" > <%= actAux.getSala().getNombre()%> </option>
+<option value="<%= salaAux.getIdSala()%>" > <%= salaAux.getNombre()%> </option>
 <%}%>
 <%}%>

@@ -10,6 +10,7 @@ import com.sanvalero.gimnasio.dao.SocioDao;
 import com.sanvalero.gimnasio.domain.Socio;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -30,9 +31,9 @@ public class ComprobarDniSocio extends HttpServlet{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException, SQLException {
 
-        String idSocio = "";
         String nombre = "";
         String apellido = "";
+        String idSocio = "";
         ArrayList<Socio> socios = new ArrayList<>();
         Conexion conexion = new Conexion();
         conexion.connect();
@@ -46,8 +47,6 @@ public class ComprobarDniSocio extends HttpServlet{
             apellido = socioAux.getApellido();
         }
 
-
-        
         response.sendRedirect("areasocioPRUEBA.jsp?nombre=" + nombre + "&apellido=" + apellido + "&idSocio=" + idSocio);
     }
     
