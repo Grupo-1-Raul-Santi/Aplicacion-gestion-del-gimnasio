@@ -1,3 +1,7 @@
+<%@page import="com.sanvalero.gimnasio.dao.SalaDao"%>
+<%@page import="com.sanvalero.gimnasio.domain.Sala"%>
+<%@page import="com.sanvalero.gimnasio.domain.Tipo"%>
+<%@page import="com.sanvalero.gimnasio.dao.TipoDao"%>
 <%@page import="com.sanvalero.gimnasio.dao.ActividadDao"%>
 <%@page import="com.sanvalero.gimnasio.dao.Conexion"%>
 <%@page import="com.sanvalero.gimnasio.domain.Actividad"%>
@@ -17,27 +21,28 @@
         <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script> 
         <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
         <script type="text/javascript">
-            function country_change() {
-                var actividad = $("#actividad").val();                
+            function tipo_change() {
+                var tipo = $("#tipo").val();
                 $.ajax({
                     type: "POST",
-                    url: "state.jsp",
-                  data: "idActividad=" + actividad,
+                    url: "tipo.jsp",
+                    data: "idTipo=" + tipo,
                     cache: false,
                     success: function (response) {
                         $("#sala").html(response);
                     }
                 });
             }
-            function state_change() {
-                var state = $("#sala").val();
+            function sala_change() {
+                var sala = $("#sala").val();
+                var tipo = $("#tipo").val();
                 $.ajax({
                     type: "POST",
-                    url: "city.jsp",
-                    data: "state id=" + state,
+                    url: "sala.jsp",
+                    data: {idSala: sala, idTipo: tipo},
                     cache: false,
                     success: function (response) {
-                        $("#city").html(response);
+                        $("#monitor").html(response);
                     }
                 });
             }
@@ -62,44 +67,37 @@
                     apellido = " ";
                 }
             %> 
-            <p>ID socio</p>
-            <div><p><%= idSocio%></p></div>
             <p>Nombre</p>
             <div><p><%= nombre%></p></div>
             <p>Apellido</p>
             <div><p><%= apellido%></p></div>
-            <p>Actividades</p>
-            
+
             <%
-                ArrayList<Actividad> act = new ArrayList<>();
+                ArrayList<Tipo> tipos = new ArrayList<>();
                 Conexion conexion = new Conexion();
                 conexion.connect();
-                ActividadDao actDao = new ActividadDao(conexion);
+                TipoDao tipodao = new TipoDao(conexion);
+                tipos = tipodao.listarTiposSalasActividad();
+            %>
+            <form method="post" action="cita-socio">
+                <input type="text" name="idSocio" value="<%= idSocio%>"> <!--Ocultar este input -->
+                <select id="tipo" onchange="tipo_change()">
+                    <option selected="selected"> --Seleccionar actividad-- </option> 
+                    <%
+                    for (Tipo tipo : tipos) {%>
+                    <option value="<%= tipo.getIdTipo()%>"><%= tipo.getNombreTipo()%></option>
+                    <%}%>
+                </select> 
 
-                act = actDao.listarTiposSalasActividad();%>
-
-            <select name='Actividades'  id="actividad" onchange="country_change()">
-                <%
-                    for (Actividad actividad : act) {%>
-                <option value="<%= actividad.getIdActividad()%>" > <%= actividad.getDescripcion()%> </option>
-                <%}%>
-            </select> 
-
-            
-                 
-                 
-                <label class="col-sm-1 control-label">State</label> 
-                <div class="col-sm-3"> 
-                    <select class="form-control" id="sala" onchange="state_change()"> 
-                        <option selected="selected"> - select state </option> 
-                    </select> 
-                </div> 
-                <label class="col-sm-1 control-label">City</label> 
-                <div class="col-sm-3"> 
-                    <select class="form-control" id="city"> 
-                        <option selected="selected"> select city </option> 
-                    </select> 
-                </div> 
-             
+                <select id="sala" onchange="sala_change()">
+                    <option selected="selected"> --Seleccionar sala-- </option> 
+                </select> 
+                
+                <select id="monitor">
+                    <option selected="selected"> --Seleccionar monitor-- </option> 
+                </select> 
+                
+                <input type="submit" value="Reservar"/>
+            </form>
     </body> 
 </html>
