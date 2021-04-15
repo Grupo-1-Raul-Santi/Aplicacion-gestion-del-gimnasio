@@ -1,40 +1,17 @@
-<%@page import="com.sanvalero.gimnasio.domain.Monitor"%>
-<%@page import="com.sanvalero.gimnasio.dao.MonitorDao"%>
-<%@page import="com.sanvalero.gimnasio.domain.Tipo"%>
-<%@page import="com.sanvalero.gimnasio.dao.SalaDao"%>
-<%@page import="com.sanvalero.gimnasio.domain.Sala"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.sanvalero.gimnasio.dao.ActividadDao"%>
-<%@page import="com.sanvalero.gimnasio.dao.Conexion"%>
-<%@page import="com.sanvalero.gimnasio.domain.Actividad"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%> 
+<%-- 
+    Document   : sala
+    Created on : 15-abr-2021, 12:58:05
+    Author     : Raul
+--%>
 
-<%
-    if (request.getParameter("idSala") != null) {
-        Sala sala = new Sala();
-        Tipo tipo = new Tipo();
-        Actividad act = new Actividad();
-
-        
-        sala.setIdSala(request.getParameter("idSala"));
-        act.setSala(sala);
-        tipo.setIdTipo(request.getParameter("idTipo"));
-        act.setTipo(tipo);
-        
-        
-        Conexion conexion = new Conexion();
-        conexion.connect();
-        MonitorDao monitordao = new MonitorDao(conexion);
-        ArrayList<Monitor> monitores = monitordao.listarMonitorActividad(act);
-
-
-%> 
-<option selected="selected">--Selecionar monitor--</option>
-<%    for (Monitor monAux : monitores) {
-%>
-<option value="<%= monAux.getIdMonitor()%>" > <%= monAux.getNombre()%> </option>
-<%}%>
-<%}%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+    </body>
+</html>
