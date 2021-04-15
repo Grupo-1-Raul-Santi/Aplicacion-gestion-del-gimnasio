@@ -69,9 +69,9 @@ public class CitaSocioServlet extends HttpServlet {
         try {
 
             realizaDao.crearRealizan(realiza);
-            response.sendRedirect("areasocioPRUEBA.jsp?status=ok");
+            response.sendRedirect("areasocio.jsp?status=ok");
         } catch (SQLException sqle) {
-            response.sendRedirect("areasocioPRUEBA.jsp?status=error");
+            response.sendRedirect("areasocio.jsp?status=error");
         }
     }
 
