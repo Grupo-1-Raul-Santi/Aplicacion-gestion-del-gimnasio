@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <title>How to Make jQuery 0nchange Select Option Value using ajax in JSP</title> 
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
-        <script src="js/jquery-1.12.4-jquery.min.js" type="text/javascript"></script> 
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script> 
         <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
         <script type="text/javascript">
             function country_change() {
@@ -69,6 +69,9 @@
             <p>Apellido</p>
             <div><p><%= apellido%></p></div>
             <p>Actividades</p>
+            <input type="date" id="start" name="trip-start"
+       value="2018-07-22"
+       min="2018-01-01" max="2018-12-31">
             <%
                 ArrayList<Actividad> act = new ArrayList<>();
                 Conexion conexion = new Conexion();
