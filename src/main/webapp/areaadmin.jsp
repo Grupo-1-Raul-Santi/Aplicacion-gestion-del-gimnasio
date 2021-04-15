@@ -36,7 +36,11 @@
 
                     <div class="col-lg-9 col-xs-12">
                         <div class="tab-content" id="v-pills-tabContent">
+
+                            <!----------------------------->
                             <!--- INICIO PESTAÑA SOCIOS --->
+                            <!----------------------------->
+
                             <div class="tab-pane fade show active" id="socios" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
@@ -47,101 +51,176 @@
                                     </li>
                                 </ul>
 
-                            <div class="tab-content" id="myTabContent">
-                                <!--- INICIO SUBPESTAÑA LISTAR SOCIOS --->
-                                <div class="tab-pane fade show active" id="ver-socios" role="tabpanel" aria-labelledby="home-tab">
-                                    <h2>Lista de socios</h2>
-                                    <p>En esta página podrás ver los socios inscritos al club, ver sus datos y eliminarlos de la base de datos.</p><br>
-                                    <table class="table lista-socios">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Apellido</th>
-                                                <th scope="col">DNI</th>
-                                                <th scope="col">Dirección</th>
-                                                <th scope="col">¿Eliminar?</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <%
-                                                Conexion conexion = new Conexion();
-                                                conexion.connect();
-                                                SocioDao socioDao = new SocioDao(conexion);
-                                                ArrayList<Socio> socios = socioDao.listarSocio();
+                                <div class="tab-content" id="myTabContent">
 
-                                            %>
-                                            <%                                        for (Socio socio : socios) {
-                                            %>
-                                            <tr>
-                                                <th scope="row"><%= socio.getIdSocio()%></th>
-                                                <td><%= socio.getNombre()%></td>
-                                                <td><%= socio.getApellido()%></td>
-                                                <td><%= socio.getDni()%></td>
-                                                <td><%= socio.getDireccion()%></td>
-                                                <td><a href="borrar-socio?id=<%= socio.getIdSocio()%>">X</a></li></td>
-                                            </tr>
-                                            <%
-                                                }
-                                            %>
-                                        </tbody>
-                                    </table>
+                                    <!--------------------------------------->
+                                    <!--- INICIO SUBPESTAÑA LISTAR SOCIOS --->
+                                    <!--------------------------------------->
 
-                                    <%
-                                        // Muestra el mensaje (si lo hay)
-                                        String messageSocio = request.getParameter("messageSocio");
-                                        if (messageSocio != null) {
-                                    %>
-                                    <p style='color:green'><%= messageSocio%></p>
-                                    <%
-                                        }
-                                    %>
-                                </div>
-                                <!--- FIN SUBPESTAÑA LISTAR SOCIOS --->
+                                    <div class="tab-pane fade show active" id="ver-socios" role="tabpanel" aria-labelledby="home-tab">
+                                        <h2>Lista de socios</h2>
+                                        <p>En esta página podrás ver los socios inscritos al club, ver sus datos y eliminarlos de la base de datos.</p><br>
 
-                                <!--- INICIO SUBPESTAÑA AÑADIR SOCIOS --->
-                                <div class="tab-pane fade" id="anadir-socios" role="tabpanel" aria-labelledby="profile-tab">
-                                    <h1>Añadir socio</h1>
-                                    <p>Añade un socio al CLUB METROPOLITAN utilizando el siguiente formulario.<p>
-                                    <form method="post" action="anadir-socio-admin">
-                                        <div class="form-field">
-                                            <p>Nombre:</p>
-                                            <input type="text" name="nombre" placeholder="Escribe aquí tu nombre..."/>
-                                        </div>
-                                        <div class="form-field">
-                                            <p>Apellido:</p>
-                                            <input type="text" name="apellido" placeholder="Escribe aquí tu apellido..."/>
-                                        </div>
-                                        <div class="form-field">
-                                            <p>DNI:</p>
-                                            <input type="text" name="dni" placeholder="Escribe aquí tu DNI..."/>
-                                        </div>
-                                        <div class="form-field">
-                                            <p>Dirección:</p>
-                                            <input type="text" name="direccion" placeholder="Escribe aquí tu dirección..."/>
-                                        </div>                
-                                        <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Registrar"/>
-                                    </form>
+                                        <!---- Mensaje lanzado cuando se ELIMINA un socio ---->
+                                        <%
+                                            String messageSocio = request.getParameter("messageSocio");
+                                            if (messageSocio == null) {
+                                                messageSocio = "";
+                                            }
 
-                                    <%
-                                        String statusSocio = request.getParameter("statusSocio");
-                                        if (statusSocio == null) {
-                                            statusSocio = "";
-                                        }
-                                        if (statusSocio.equals("ok")) {
-                                            out.println("<p style='color:green'>El socio se ha registrado con éxito</p>");
-                                        } else if (statusSocio.equals("error")) {
-                                            out.println("<p style='color:red'>No se ha podido registrar el socio</p>");
-                                        }
-                                    %>
+                                            if (messageSocio.equals("ok")) {
+                                                out.println("<div class='message msg-ok'><p>El cliente se ha eliminado de la base de datos</p></div>");
+                                            } else if (messageSocio.equals("error")) {
+                                                out.println("<div class='message msg-fail'><p>No se ha podido eliminar el cliente</p></div>");
+                                            }
+                                        %>
 
-                                </div>
-                                <!--- FIN SUBPESTAÑA AÑADIR SOCIOS --->
+                                        <!---- Mensaje lanzado cuando se AÑADE un socio ---->
+                                        <%
+                                            String statusSocio = request.getParameter("statusSocio");
+                                            if (statusSocio == null) {
+                                                statusSocio = "";
+                                            }
+                                            if (statusSocio.equals("ok")) {
+                                                out.println("<div class='message msg-ok'><p>El cliente se ha registrado correctamente</p></div>");
+                                            } else if (statusSocio.equals("error")) {
+                                                out.println("<div class='message msg-fail'><p>No se ha podido registrar el socio</p></div>");
+                                            }
+                                        %>
+
+                                        <table class="table lista-socios">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Apellido</th>
+                                                    <th scope="col">DNI</th>
+                                                    <th scope="col">Dirección</th>
+                                                    <th scope="col"> </th>
+                                                    <th scope="col"> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%
+                                                    Conexion conexion = new Conexion();
+                                                    conexion.connect();
+                                                    SocioDao socioDao = new SocioDao(conexion);
+                                                    ArrayList<Socio> socios = socioDao.listarSocio();
+
+                                                %>
+                                                <%   for (Socio socio : socios) {
+                                                %>
+                                                <tr>
+                                                    <th scope="row"><%= socio.getIdSocio()%></th>
+                                                    <td><%= socio.getNombre()%></td>
+                                                    <td><%= socio.getApellido()%></td>
+                                                    <td><%= socio.getDni()%></td>
+                                                    <td><%= socio.getDireccion()%></td>
+                                                    <td><button class="w-100 btn btn-lg btn-primary button-dark admin" data-toggle="collapse" href="#collapse-<%= socio.getIdSocio()%>" role="button" aria-expanded="false" aria-controls="collapseExample">Editar</button></td>
+                                                    <td><button class="w-100 btn btn-lg btn-primary button-dark admin" href="borrar-socio?id=<%= socio.getIdSocio()%>">Eliminar</button></td>
+
+                                                </tr>
+
+                                                <tr class="row-hidden">
+                                                    <td colspan="7">
+                                                        <div class="collapse" id="collapse-<%= socio.getIdSocio()%>">
+                                                            <form method="post" action="">
+                                                                <div class="form-field">
+                                                                    <p>ID:</p>
+                                                                    <input type="text" readonly="" class="form-control" value="<%= socio.getIdSocio()%>"/>
+                                                                </div>
+                                                                <div class="form-field">
+                                                                    <p>Nombre:</p>
+                                                                     <input type="text" name="txtNom" class="form-control" value="<%= socio.getNombre()%>"/><br>
+                                                                </div>
+                                                                <div class="form-field">
+                                                                    <p>Apellido:</p>
+                                                                     <input type="text" name="txtApe" class="form-control" value="<%= socio.getApellido()%>"/><br>
+                                                                </div>
+                                                                <div class="form-field">
+                                                                    <p>DNI</p>
+                                                                     <input type="text" name="txtDNI" class="form-control" value="<%= socio.getDni()%>"/><br>
+                                                                </div>
+                                                                <div class="form-field">
+                                                                    <p>Dirección:</p>
+                                                                     <input type="text" name="txtDirec" class="form-control" value="<%= socio.getDireccion()%>"/><br>
+                                                                </div>         
+                                                                <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="actualizar""/>
+       
+                                                                <%
+
+                                                                    socio.setNombre(request.getParameter("txtNom"));
+                                                                    socio.setApellido(request.getParameter("txtApe"));
+                                                                    socio.setDni(request.getParameter("txtDNI"));
+                                                                    socio.setDireccion(request.getParameter("txtDirec"));
+                  
+                                                                    
+                                                                    if (socio.getNombre() != null && socio.getDni() != null) {
+                                                                        socioDao.editarSocio(socio);
+                                                                    }
+
+                                                                %>
+                                                            </form>
+                                                           
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <% 
+                                                    }
+                                                %>
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+                                    <!------------------------------------> 
+                                    <!--- FIN SUBPESTAÑA LISTAR SOCIOS --->
+                                    <!------------------------------------>
+
+                                    <!--------------------------------------->
+                                    <!--- INICIO SUBPESTAÑA AÑADIR SOCIOS --->
+                                    <!--------------------------------------->
+
+                                    <div class="tab-pane fade" id="anadir-socios" role="tabpanel" aria-labelledby="profile-tab">
+                                        <h1>Añadir socio</h1>
+                                        <p>Añade un socio al CLUB METROPOLITAN utilizando el siguiente formulario.<p>
+                                        <form method="post" action="anadir-socio-admin">
+                                            <div class="form-field">
+                                                <p>Nombre:</p>
+                                                <input type="text" name="nombre" placeholder="Escribe aquí tu nombre..."/>
+                                            </div>
+                                            <div class="form-field">
+                                                <p>Apellido:</p>
+                                                <input type="text" name="apellido" placeholder="Escribe aquí tu apellido..."/>
+                                            </div>
+                                            <div class="form-field">
+                                                <p>DNI:</p>
+                                                <input type="text" name="dni" placeholder="Escribe aquí tu DNI..."/>
+                                            </div>
+                                            <div class="form-field">
+                                                <p>Dirección:</p>
+                                                <input type="text" name="direccion" placeholder="Escribe aquí tu dirección..."/>
+                                            </div>                
+                                            <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Registrar"/>
+                                        </form>
+
+                                    </div>
+
+                                    <!------------------------------------>
+                                    <!--- FIN SUBPESTAÑA AÑADIR SOCIOS --->
+                                    <!------------------------------------>
+
                                 </div>
                             </div>
+
+                            <!-------------------------->
                             <!--- FIN PESTAÑA SOCIOS --->
-                        
+                            <!-------------------------->
+
+                            <!---------------------------------->
                             <!--- INICIO PESTAÑA ACTIVIDADES --->
+                            <!---------------------------------->
+
                             <div class="tab-pane fade" id="actividades" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                 <h1>Lista de tipos</h1>
                                 <%
@@ -186,9 +265,13 @@
                                     }
                                 %>
                             </div>
+                            <!------------------------------->
                             <!--- FIN PESTAÑA ACTIVIDADES --->
-                        
+                            <!------------------------------->
+
+                            <!-------------------------------->
                             <!--- INICIO PESTAÑA MONITORES --->
+                            <!-------------------------------->
                             <div class="tab-pane fade" id="monitores" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                 <h1>Lista de monitores</h1>
                                 <%
@@ -240,9 +323,16 @@
                                     }
                                 %>
                             </div>
+
+                            <!----------------------------->
                             <!--- FIN PESTAÑA MONITORES --->
-                            
+                            <!----------------------------->
+
+
+                            <!---------------------------->
                             <!--- INICIO PESTAÑA SALAS --->
+                            <!---------------------------->
+
                             <div class="tab-pane fade" id="salas" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                                 <h1>Lista de salas</h1>
                                 <%
@@ -290,9 +380,11 @@
                                     }
                                 %>
                             </div>
+                            <!------------------------->
                             <!--- FIN PESTAÑA SALAS --->
+                            <!------------------------->
+                        </div>
                     </div>
-                </div>
             </section>
 
             <%@ include file="includes/footer.jsp" %>
