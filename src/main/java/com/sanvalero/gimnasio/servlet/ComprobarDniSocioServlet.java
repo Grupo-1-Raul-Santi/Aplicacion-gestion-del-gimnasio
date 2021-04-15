@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Raul
  */
 @WebServlet(name = "comprobar-dni-socio", urlPatterns = {"/comprobar-dni-socio"})
-public class ComprobarDniSocio extends HttpServlet{
+public class ComprobarDniSocioServlet extends HttpServlet{
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException, SQLException {
@@ -55,7 +55,7 @@ public class ComprobarDniSocio extends HttpServlet{
         try {
             processRequest(req, resp);
         } catch (SQLException ex) {
-            Logger.getLogger(ComprobarDniSocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComprobarDniSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -64,7 +64,7 @@ public class ComprobarDniSocio extends HttpServlet{
         try {
             processRequest(req, resp);
         } catch (SQLException ex) {
-            Logger.getLogger(ComprobarDniSocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComprobarDniSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -48,13 +48,12 @@ public class TipoDao {
         }
         return tipos;
     }
-    
+
     public ArrayList<Tipo> listarTiposSalasActividad() throws SQLException {
         ArrayList<Tipo> tipos = new ArrayList<>();
 
         String sql = "SELECT T.ID_TIPO, T.NOMBRE_TIPO FROM ACTIVIDADES A INNER JOIN "
                 + "TIPOS T ON T.ID_TIPO = A.ID_TIPO GROUP BY T.NOMBRE_TIPO, T.ID_TIPO";
-
         PreparedStatement sentencia = conexion.getConexion().prepareStatement(sql);
 
         ResultSet rs = sentencia.executeQuery();

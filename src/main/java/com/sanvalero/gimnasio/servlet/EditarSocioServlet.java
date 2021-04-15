@@ -1,9 +1,7 @@
 package com.sanvalero.gimnasio.servlet;
 
 import com.sanvalero.gimnasio.dao.Conexion;
-import com.sanvalero.gimnasio.dao.MonitorDao;
 import com.sanvalero.gimnasio.dao.SocioDao;
-import com.sanvalero.gimnasio.domain.Monitor;
 import com.sanvalero.gimnasio.domain.Socio;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,24 +16,29 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet que elimina una película a la base de datos
  */
-@WebServlet(name = "borrar-monitor", urlPatterns = {"/borrar-monitor"})
-public class BorrarMonitorServlet extends HttpServlet {
+@WebServlet(name = "editar-socio", urlPatterns = {"/editar-socio"})
+public class EditarSocioServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException, SQLException {
-        Monitor monitor = new Monitor();
-        monitor.setIdMonitor(request.getParameter("id"));
 
+        Socio socio = new Socio();
         Conexion conexion = new Conexion();
         conexion.connect();
-        MonitorDao monitorDao = new MonitorDao(conexion);
 
-        
+        socio.setIdSocio(request.getParameter("txtId"));
+        socio.setNombre(request.getParameter("txtNom"));
+        socio.setApellido(request.getParameter("txtApe"));
+        socio.setDni(request.getParameter("txtDNI"));
+        socio.setDireccion(request.getParameter("txtDirec"));
+
+        SocioDao socioDao = new SocioDao(conexion);
+
         try {
-            monitorDao.borrarMonitor(monitor);
-            response.sendRedirect("areaadmin.jsp?messageMonitor=ok");
+            socioDao.editarSocio(socio);
+            response.sendRedirect("areaadmin.jsp?statusSocioEdit=ok");
         } catch (SQLException sqle) {
-            response.sendRedirect("areaadmin.jsp?messageMonitor=error");
+            response.sendRedirect("areaadmin.jsp?statusSocioEdit=error");
         }
 
     }
@@ -45,7 +48,7 @@ public class BorrarMonitorServlet extends HttpServlet {
         try {
             processRequest(req, resp);
         } catch (SQLException ex) {
-            Logger.getLogger(BorrarMonitorServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BorrarSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -54,7 +57,7 @@ public class BorrarMonitorServlet extends HttpServlet {
         try {
             processRequest(req, resp);
         } catch (SQLException ex) {
-            Logger.getLogger(BorrarMonitorServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BorrarSocioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
