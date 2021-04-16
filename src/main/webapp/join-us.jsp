@@ -4,16 +4,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Hazte socio | Gimnasios Metropolitan</title>
-        <meta name="description" content="Hazte socio de nuestro gimnasio y descubre nuestra variedad de actividades.">
+        <title>Join us | Metropolitan Gym</title>
+        <meta name="description" content="Become a member of our gym and discover our variety of activities.">
         
         <%@ include file="includes/head.jsp" %>
     </head>
     <body>
-        <%@ include file="includes/menu.jsp" %>
+        <%@ include file="includes/menu-en.jsp" %>
         
         <div class="banner-hero inner-pages" style="background-image: url('images/hero-unete-socios.jpg'); background-size: cover; background-position: center center;">
-            <h1>Hazte socio</h1>
+            <h1>Join us</h1>
         </div>
         
         <section class="container">
@@ -25,28 +25,28 @@
                 <div class="col-lg-6 col-xs-12">
                     
                     <div class="inner-text">
-                        <h2>Únete al Club Metropolitan</h2>
-                        <p>¿Te gustaría unirte a nuestro club? Rellena el siguiente formulario para poder formar parte de inmediato de nuestro CLUB METROPOLITAN.</p>
+                        <h2>Join the Metropolitan Club</h2>
+                        <p>Do you want to become a member of our club? Fill in the following form to join our METROPOLITAN CLUB.</p>
                     </div>
                     
                     <form method="post" action="anadir-socio">
                         <div class="form-field">
-                            <p>Nombre:</p>
-                            <input type="text" name="nombre" placeholder="Escribe aquí tu nombre..."/>
+                            <p>First name:</p>
+                            <input type="text" name="nombre" placeholder="Write here your first name..."/>
                         </div>
                         <div class="form-field">
-                            <p>Apellido:</p>
-                             <input type="text" name="apellido" placeholder="Escribe aquí tu apellido..."/>
+                            <p>Last name:</p>
+                             <input type="text" name="apellido" placeholder="Write here your last name..."/>
                         </div>
                         <div class="form-field">
                             <p>DNI:</p>
-                             <input type="text" name="dni" placeholder="Escribe aquí tu DNI..."/>
+                             <input type="text" name="dni" placeholder="Write here your DNI..."/>
                         </div>
                         <div class="form-field">
-                            <p>Dirección:</p>
-                             <input type="text" name="direccion" placeholder="Escribe aquí tu dirección..."/>
+                            <p>Address:</p>
+                             <input type="text" name="direccion" placeholder="Write here your address..."/>
                         </div>                
-                        <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Registrar"/>
+                        <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Register"/>
                         
                         <%
                         String status = request.getParameter("status");
@@ -54,9 +54,9 @@
                             status = "";
 
                         if (status.equals("ok")) {
-                            out.println("<div class='message msg-ok'><p>El cliente se ha registrado con éxito</p></div>");
+                            out.println("<div class='message msg-ok'><p>The client has been added to the database</p></div>");
                         } else if (status.equals("error")) {
-                            out.println("<div class='message msg-fail'><p>No se ha podido registrar el cliente</p></div>");
+                            out.println("<div class='message msg-fail'><p>The client hasn't been added to the database</p></div>");
                         }
                         %>
                     </form>
@@ -64,6 +64,6 @@
             </div>
         </section>
         
-        <%@ include file="includes/footer.jsp" %>
+        <%@ include file="includes/footer-en.jsp" %>
     </body>
 </html>
