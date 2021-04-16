@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2>Step 2: Select the desired activity</h2>
-                    <p>Choose the activity you want to do, the monitor that will teach it and the room where you'll do it.</p>
+                    <p>Choose the activity you want to do, the instructor that will teach it and the room where you'll do it.</p>
                     <%
                         ArrayList<Tipo> tipos = new ArrayList<>();
                         Conexion conexion = new Conexion();
@@ -115,7 +115,7 @@
                            </select> 
 
                             <select class="custom-select" name="monitor" id="monitor" >
-                                 <option selected="selected"> --Choose a monitor-- </option> 
+                                 <option selected="selected"> --Choose a instructor-- </option> 
                             </select>
                         </div>
                         <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Book appointment"/>
