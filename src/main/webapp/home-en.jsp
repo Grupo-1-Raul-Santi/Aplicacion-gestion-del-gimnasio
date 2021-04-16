@@ -31,7 +31,7 @@
                 <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
                   <div class="my-3 p-3">
                       <h2 class="display-5 dark"><a href="areasocio.jsp">Book your activity</a></h2>
-                    <p class="lead">Visit our app and get to know our avalable schedule for each activity. Book your apointment now!</p>
+                    <p class="lead">Visit our app and get to know our avalable schedule for each activity. Book your appointment now!</p>
                   </div>
                   <div class="bg-dark shadow-sm mx-auto reservar-actividad wow fadeInUp" style="visibility: visible;animation-name: fadeInUp; width: 80%; height: 300px; border-radius: 21px 21px 0 0;" data-wow-delay="0.2s"></div>
                 </div>
