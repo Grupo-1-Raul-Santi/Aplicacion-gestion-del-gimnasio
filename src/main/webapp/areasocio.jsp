@@ -42,7 +42,7 @@
                                 <p>DNI:</p>
                                 <input type="text" name="dni" placeholder="Escribe aquí tu DNI..."/>
                             </div>
-                            <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Validar"/>
+                            <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Validar" onclick="showDiv()"/>
                         </form>
 
                         <%

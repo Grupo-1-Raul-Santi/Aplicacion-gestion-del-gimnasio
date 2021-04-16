@@ -10,21 +10,21 @@
             </div>
         </div>
         <div class="col-6 col-md">
-            <h5>Area privada</h5>
+            <h5>Private area</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="areasocio.jsp">Area socios</a></li>
-                <li><a class="link-secondary" href="areaadmin.jsp">Area administradores</a></li>
+                <li><a class="link-secondary" href="areasocio.jsp">Member area</a></li>
+                <li><a class="link-secondary" href="areaadmin.jsp">Admin area</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
-            <h5>Nuestro club</h5>
+            <h5>Our club</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="haztesocio.jsp">Hazte socio</a></li>
-                <li><a class="link-secondary" href="areasocio.jsp">Reserva tu actividad</a></li>
+                <li><a class="link-secondary" href="haztesocio.jsp">Become a member</a></li>
+                <li><a class="link-secondary" href="areasocio.jsp">Book your activity</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
-            <h5>Desarrollado por</h5>
+            <h5>Developed by</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="link-secondary" href="https://github.com/santir6" target="_blank">Santi Ballestin</a></li>
                 <li><a class="link-secondary" href="https://github.com/raulcoroe" target="_blank">Raúl Martín</a></li>
@@ -70,4 +70,5 @@
                 });
             }
         </script>
+     
 </footer>
