@@ -115,20 +115,71 @@
                                     out.println("<div class='message msg-fail'><p>No se ha podido editar el monitor</p></div>");
                                 }
                             %>
-                            
-                             <!---- Mensaje lanzado cuando se CREA una actividad ---->
-                            <%
-            String crearActividad = request.getParameter("crearActividad");
-            if (crearActividad == null) {
-                crearActividad = "";
-            }
 
-            if (crearActividad.equals("ok")) {
-                out.println("<div class='message msg-ok'><p>Actividad creada correctamente</p></div>");
-            } else if (crearActividad.equals("error")) {
-                out.println("<div class='message msg-fail'><p>No se ha podido crear la actividad</p></div>");
-            }
-        %>
+                            <!---- Mensaje lanzado cuando se CREA una actividad ---->
+                            <%
+                                String crearActividad = request.getParameter("crearActividad");
+                                if (crearActividad == null) {
+                                    crearActividad = "";
+                                }
+
+                                if (crearActividad.equals("ok")) {
+                                    out.println("<div class='message msg-ok'><p>Actividad creada correctamente</p></div>");
+                                } else if (crearActividad.equals("error")) {
+                                    out.println("<div class='message msg-fail'><p>No se ha podido crear la actividad</p></div>");
+                                }
+                            %>
+
+                            <!---- Mensaje lanzado cuando se ELIMINA una actividad ---->
+                            <%
+                                // Muestra el mensaje (si lo hay)
+                                String messageTipo = request.getParameter("messageTipo");
+                                if (messageTipo != null) {
+                            %>
+                            <div class='message msg-ok'><p><%= messageTipo%></p></div>
+                                    <%
+                                        }
+                                    %>
+
+                            <!---- Mensaje lanzado cuando se AÑADE una actividad ---->
+                            <%
+                                String statusTipo = request.getParameter("statusTipo");
+                                if (statusTipo == null) {
+                                    statusTipo = "";
+                                }
+
+                                if (statusTipo.equals("ok")) {
+                                    out.println("<div class='message msg-ok'><p>El tipo de actividad se ha registrado con éxito</p></div>");
+                                } else if (statusTipo.equals("error")) {
+                                    out.println("<div class='message msg-fail'><p>No se ha podido registrar el tipo de actividad</p></div>");
+                                }
+                            %>
+
+                            <!---- Mensaje lanzado cuando se ELIMINA una sala ---->
+                            <%
+                                // Muestra el mensaje (si lo hay)
+                                String messageSala = request.getParameter("messageSala");
+                                if (messageSala != null) {
+                            %>
+                            <div class='message msg-ok'><p><%= messageSala%></p></div>
+                            <%
+                                }
+                            %>
+
+                            <!---- Mensaje lanzado cuando se AÑADE una sala ---->
+                            <%
+                                String statusSala = request.getParameter("statusSala");
+                                if (statusSala == null) {
+                                    statusSala = "";
+                                }
+
+                                if (statusSala.equals("ok")) {
+                                    out.println("<div class='message msg-ok'><p>La sala se ha registrado con éxito</p></div>");
+                                } else if (statusSala.equals("error")) {
+                                    out.println("<div class='message msg-fail'><p>No se ha podido registrar la sala</p></div>");
+                                }
+                            %>
+
                             <!----------------------------->
                             <!--- INICIO PESTAÑA SOCIOS --->
                             <!----------------------------->
@@ -148,7 +199,6 @@
                                     <!--------------------------------------->
                                     <!--- INICIO SUBPESTAÑA LISTAR SOCIOS --->
                                     <!--------------------------------------->
-                                    <!---- Mensaje lanzado cuando se ELIMINA un socio ---->
                                     <div class="tab-pane fade show active" id="ver-socios" role="tabpanel" aria-labelledby="home-tab">
                                         <h2>Lista de socios</h2>
                                         <p>En esta página podrás ver los socios inscritos al club, ver sus datos y eliminarlos de la base de datos.</p><br>
@@ -234,7 +284,7 @@
                                     <!--------------------------------------->
 
                                     <div class="tab-pane fade" id="anadir-socios" role="tabpanel" aria-labelledby="profile-tab">
-                                        <h1>Añadir socio</h1>
+                                        <h2>Añadir socio</h2>
                                         <p>Añade un socio al CLUB METROPOLITAN utilizando el siguiente formulario.<p>
                                         <form method="post" action="anadir-socio-admin">
                                             <div class="form-field">
@@ -274,48 +324,124 @@
                             <!---------------------------------->
 
                             <div class="tab-pane fade" id="actividades" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                <h1>Lista de tipos</h1>
-                                <%
-                                    TipoDao tipoDao = new TipoDao(conexion);
-                                    ArrayList<Tipo> tipos = tipoDao.listarTipo();
-
-                                %>
-                                <ul>
-                                    <%            for (Tipo tipo : tipos) {
-                                    %>
-                                    <li><%= tipo.getIdTipo()%> &nbsp; <%= tipo.getNombreTipo()%> <a href="borrar-tipo?id=<%= tipo.getIdTipo()%>">Eliminar</a></li>
-                                        <%
-                                            }
-                                        %>
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#ver-actividades" role="tab" aria-controls="home" aria-selected="true">Listado de socios</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#anadir-actividad" role="tab" aria-controls="profile" aria-selected="false">Añadir actividades</a>
+                                    </li>
                                 </ul>
-                                <%
-                                    // Muestra el mensaje (si lo hay)
-                                    String messageTipo = request.getParameter("messageTipo");
-                                    if (messageTipo != null) {
-                                %>
-                                <p style='color:green'><%= messageTipo%></p>
-                                <%
-                                    }
-                                %>
 
-                                <h1>Añadir tipo</h1>
-                                <form method="post" action="anadir-tipo-admin">
-                                    Nombre de la actividad:
-                                    <input type="text" name="nombre"/><br/>
-                                    <input type="submit" value="Registrar"/>
-                                </form>
-                                <%
-                                    String statusTipo = request.getParameter("statusTipo");
-                                    if (statusTipo == null) {
-                                        statusTipo = "";
-                                    }
+                                <!-------------------------------------------->
+                                <!--- INICIO SUBPESTAÑA LISTAR ACTIVIDADES --->
+                                <!-------------------------------------------->
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="ver-actividades" role="tabpanel" aria-labelledby="home-tab">
+                                        <h2>Lista de actividades</h2>
+                                        <p>Comprueba la lista de todas las actividades disponibles en el centro y elimina aquellas que ya no se van a impartir más.</p><br>
+                                        <table class="table lista-socios">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col"> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%
+                                                    TipoDao tipoDao = new TipoDao(conexion);
+                                                    ArrayList<Tipo> tipos = tipoDao.listarTipo();
+                                                %>
 
-                                    if (statusTipo.equals("ok")) {
-                                        out.println("<p style='color:green'>El tipo de actividad se ha registrado con éxito</p>");
-                                    } else if (statusTipo.equals("error")) {
-                                        out.println("<p style='color:red'>No se ha podido registrar el tipo de actividad</p>");
-                                    }
-                                %>
+                                                <%
+                                                    for (Tipo tipo : tipos) {
+                                                %>
+                                                <tr>
+                                                    <th scope="row"><%= tipo.getIdTipo()%></th>
+                                                    <td><%= tipo.getNombreTipo()%></td>
+                                                    <td><a href="borrar-tipo?id=<%= tipo.getIdTipo()%>"> <button class="w-100 btn btn-lg btn-primary button-dark admin">Eliminar</button></a></td>
+                                                </tr>
+                                                <%
+                                                    }
+                                                %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!----------------------------------------->
+                                    <!--- FIN SUBPESTAÑA LISTAR ACTIVIDADES --->
+                                    <!----------------------------------------->
+
+                                    <!-------------------------------------------->
+                                    <!--- INICIO SUBPESTAÑA AÑADIR ACTIVIDADES --->
+                                    <!-------------------------------------------->
+                                    <div class="tab-pane fade" id="anadir-actividad" role="tabpanel" aria-labelledby="profile-tab">
+                                        <h2>Añadir actividad</h2>
+                                        <p>Añade una nueva actividad para que los socios puedan realizar en el centro.</p><br>
+                                        <form method="post" action="anadir-tipo-admin">
+                                            <div class="form-field">
+                                                <p>Paso 1: Nombre de la actividad</p>
+                                                <input type="text" name="nombre" placeholder="Escribe aquí el nombre de la actividad..."/>
+                                            </div>
+                                            <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Registrar"/>
+                                        </form>
+                                        
+                                        <br><p>Completa los datos de la actividad para que los usuarios puedan registrar su hora en la aplicación y reservar plaza.</p><br>
+                                        <%
+                                            ArrayList<Tipo> tiposAux = new ArrayList<>();
+                                            ArrayList<Sala> salasAux = new ArrayList<>();
+                                            ArrayList<Monitor> monitoresAux = new ArrayList<>();
+                                            TipoDao tipodaoAux = new TipoDao(conexion);
+                                            SalaDao saladaoAux = new SalaDao(conexion);
+                                            MonitorDao monitordaoAux = new MonitorDao(conexion);
+                                            tiposAux = tipodaoAux.listarTipo();
+                                            salasAux = saladaoAux.listarSala();
+                                            monitoresAux = monitordaoAux.listarMonitor();
+                                        %>
+                                        <form method="post" action="crear-actividad">
+
+                                            <div class="form-field">
+                                                <p>Paso 2: Descripción de la actividad</p>
+                                                <input type="textAux" name="descripcionAux" value="" placeholder="Escribe aquí el nombre de la actividad..."> 
+                                            </div>
+                                            <br>
+                                            <div class="form-field">
+                                                <p>Paso 3: Escoge la actividad a completar, el monitor y la sala donde se imparte</p>
+                                            </div>
+                                            <div class="seleccion-actividad">
+                                                <select class="custom-select" name="tipoAux">
+                                                    <option selected="selected"> --Seleccionar actividad-- </option> 
+                                                    <%
+                                                        for (Tipo tipoAux : tiposAux) {%>
+                                                    <option value="<%= tipoAux.getIdTipo()%>" ><%= tipoAux.getNombreTipo()%></option>
+                                                    <%}%>
+                                                </select> 
+
+                                                <select class="custom-select" name="salaAux">
+                                                    <option selected="selected"> --Seleccionar sala-- </option> 
+                                                    <%
+                                                        for (Sala salaAux : salasAux) {%>
+                                                    <option value="<%= salaAux.getIdSala()%>" ><%= salaAux.getNombre()%></option>
+                                                    <%}%>
+                                                </select> 
+
+                                                <select class="custom-select" name="monitorAux">
+                                                    <option selected="selected"> --Seleccionar monitor-- </option> 
+                                                    <%
+                                                        for (Monitor monitorAux : monitoresAux) {%>
+                                                    <option value="<%= monitorAux.getIdMonitor()%>" ><%= monitorAux.getNombre()%></option>
+                                                    <%}%>
+                                                </select>
+                                            </div>
+
+                                            <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Guardar información"/>
+                                        </form>
+                                    </div>
+                                    <!----------------------------------------->
+                                    <!--- FIN SUBPESTAÑA AÑADIR ACTIVIDADES --->
+                                    <!----------------------------------------->
+
+                                </div>
                             </div>
                             <!------------------------------->
                             <!--- FIN PESTAÑA ACTIVIDADES --->
@@ -325,100 +451,125 @@
                             <!--- INICIO PESTAÑA MONITORES --->
                             <!-------------------------------->
                             <div class="tab-pane fade" id="monitores" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                <h1>Lista de monitores</h1>
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#ver-monitores" role="tab" aria-controls="home" aria-selected="true">Listado de monitores</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#anadir-monitor" role="tab" aria-controls="profile" aria-selected="false">Añadir monitores</a>
+                                    </li>
+                                </ul>
 
-                                <table class="table lista-socios">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Apellido</th>
-                                            <th scope="col">DNI</th>
-                                            <th scope="col">Dirección</th>
-                                            <th scope="col"> </th>
-                                            <th scope="col"> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <%
-                                            MonitorDao monitorDao = new MonitorDao(conexion);
-                                            ArrayList<Monitor> monitores = monitorDao.listarMonitor();
+                                <div class="tab-content" id="myTabContent">
+                                    <!--------------------------------------->
+                                    <!--- INICIO SUBPESTAÑA VER MONITORES --->
+                                    <!---------------------------------------->
+                                    <div class="tab-pane fade show active" id="ver-monitores" role="tabpanel" aria-labelledby="profile-tab">
+                                        <h2>Lista de monitores</h2>
+                                        <p>En este listado de monitores podrás comprobar los datos personales de cada monitor y eliminarlos de la base de datos.</p><br>
+                                        <table class="table lista-socios">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Apellido</th>
+                                                    <th scope="col">DNI</th>
+                                                    <th scope="col">Dirección</th>
+                                                    <th scope="col"> </th>
+                                                    <th scope="col"> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%
+                                                    MonitorDao monitorDao = new MonitorDao(conexion);
+                                                    ArrayList<Monitor> monitores = monitorDao.listarMonitor();
 
-                                        %>
-                                        <%   for (Monitor monitor : monitores) {
-                                        %>
-                                        <tr>
-                                            <th scope="row"><%= monitor.getIdMonitor()%></th>
-                                            <td><%= monitor.getNombre()%></td>
-                                            <td><%= monitor.getApellido()%></td>
-                                            <td><%= monitor.getDni()%></td>
-                                            <td><%= monitor.getDireccion()%></td>
-                                            <td><button class="w-100 btn btn-lg btn-primary button-dark admin" data-toggle="collapse" href="#collapse-<%= monitor.getIdMonitor()%>" role="button" aria-expanded="false" aria-controls="collapseExample">Editar</button></td>
-                                            <td><a href="borrar-monitor?id=<%= monitor.getIdMonitor()%>"> <button class="w-100 btn btn-lg btn-primary button-dark admin">Eliminar</button></a></td>
-                                        </tr>
+                                                %>
+                                                <%   for (Monitor monitor : monitores) {
+                                                %>
+                                                <tr>
+                                                    <th scope="row"><%= monitor.getIdMonitor()%></th>
+                                                    <td><%= monitor.getNombre()%></td>
+                                                    <td><%= monitor.getApellido()%></td>
+                                                    <td><%= monitor.getDni()%></td>
+                                                    <td><%= monitor.getDireccion()%></td>
+                                                    <td><button class="w-100 btn btn-lg btn-primary button-dark admin" data-toggle="collapse" href="#collapse-monitor-<%= monitor.getIdMonitor()%>" role="button" aria-expanded="false" aria-controls="collapseExample">Editar</button></td>
+                                                    <td><a href="borrar-monitor?id=<%= monitor.getIdMonitor()%>"> <button class="w-100 btn btn-lg btn-primary button-dark admin">Eliminar</button></a></td>
+                                                </tr>
 
-                                        <tr class="row-hidden">
-                                            <td colspan="7">
-                                                <div class="collapse" id="collapse-<%= monitor.getIdMonitor()%>">
-                                                    <form method="post" action="editar-monitor">
-                                                        <div class="form-field">
-                                                            <p>ID:</p>
-                                                            <input type="text"  name="txtId" readonly="" class="form-control" value="<%= monitor.getIdMonitor()%>"/>
+                                                <tr class="row-hidden">
+                                                    <td colspan="7">
+                                                        <div class="collapse" id="collapse-monitor-<%= monitor.getIdMonitor()%>">
+                                                            <form method="post" action="editar-monitor">
+                                                                <div class="form-field">
+                                                                    <p>ID:</p>
+                                                                    <input type="text"  name="txtId" readonly="" class="form-control" value="<%= monitor.getIdMonitor()%>"/>
+                                                                </div>
+                                                                <div class="form-field">
+                                                                    <p>Nombre:</p>
+                                                                    <input type="text" required="" name="txtNom" class="form-control" value="<%= monitor.getNombre()%>"/><br>
+                                                                </div>
+                                                                <div class="form-field">
+                                                                    <p>Apellido:</p>
+                                                                    <input type="text" name="txtApe" class="form-control" value="<%= monitor.getApellido()%>"/><br>
+                                                                </div>
+                                                                <div class="form-field">
+                                                                    <p>DNI</p>
+                                                                    <input type="text" required="" name="txtDNI" class="form-control" value="<%= monitor.getDni()%>"/><br>
+                                                                </div>
+                                                                <div class="form-field">
+                                                                    <p>Dirección:</p>
+                                                                    <input type="text" name="txtDirec" class="form-control" value="<%= monitor.getDireccion()%>"/><br>
+                                                                </div>         
+                                                                <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="actualizar""/>
+
+                                                            </form>
+
                                                         </div>
-                                                        <div class="form-field">
-                                                            <p>Nombre:</p>
-                                                            <input type="text" required="" name="txtNom" class="form-control" value="<%= monitor.getNombre()%>"/><br>
-                                                        </div>
-                                                        <div class="form-field">
-                                                            <p>Apellido:</p>
-                                                            <input type="text" name="txtApe" class="form-control" value="<%= monitor.getApellido()%>"/><br>
-                                                        </div>
-                                                        <div class="form-field">
-                                                            <p>DNI</p>
-                                                            <input type="text" required="" name="txtDNI" class="form-control" value="<%= monitor.getDni()%>"/><br>
-                                                        </div>
-                                                        <div class="form-field">
-                                                            <p>Dirección:</p>
-                                                            <input type="text" name="txtDirec" class="form-control" value="<%= monitor.getDireccion()%>"/><br>
-                                                        </div>         
-                                                        <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="actualizar""/>
-
-                                                    </form>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <%
-                                            }
-                                        %>
-                                    </tbody>
-                                </table>
-
-
-                                <h1>Añadir monitor</h1>
-                                <p>Añade un monitor al CLUB METROPOLITAN utilizando el siguiente formulario.<p>
-                                <form method="post" action="anadir-monitor">
-                                    <div class="form-field">
-                                        <p>Nombre:</p>
-                                        <input type="text" name="nombre" placeholder="Escribe aquí tu nombre..."/>
+                                                    </td>
+                                                </tr>
+                                                <%
+                                                    }
+                                                %>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="form-field">
-                                        <p>Apellido:</p>
-                                        <input type="text" name="apellido" placeholder="Escribe aquí tu apellido..."/>
-                                    </div>
-                                    <div class="form-field">
-                                        <p>DNI:</p>
-                                        <input type="text" name="dni" placeholder="Escribe aquí tu DNI..."/>
-                                    </div>
-                                    <div class="form-field">
-                                        <p>Dirección:</p>
-                                        <input type="text" name="direccion" placeholder="Escribe aquí tu dirección..."/>
-                                    </div>                
-                                    <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Registrar"/>
-                                </form>
+                                    <!------------------------------------>
+                                    <!--- FIN SUBPESTAÑA VER MONITORES --->
+                                    <!------------------------------------>
 
+
+                                    <!---------------------------------------->
+                                    <!--- INICIO SUBPESTAÑA AÑADIR MONITOR --->
+                                    <!---------------------------------------->
+                                    <div class="tab-pane fade" id="anadir-monitor" role="tabpanel" aria-labelledby="profile-tab">
+                                        <h2>Añadir monitor</h2>
+                                        <p>Añade un monitor al CLUB METROPOLITAN utilizando el siguiente formulario.</p><br>
+                                        <form method="post" action="anadir-monitor">
+                                            <div class="form-field">
+                                                <p>Nombre:</p>
+                                                <input type="text" name="nombre" placeholder="Escribe aquí tu nombre..."/>
+                                            </div>
+                                            <div class="form-field">
+                                                <p>Apellido:</p>
+                                                <input type="text" name="apellido" placeholder="Escribe aquí tu apellido..."/>
+                                            </div>
+                                            <div class="form-field">
+                                                <p>DNI:</p>
+                                                <input type="text" name="dni" placeholder="Escribe aquí tu DNI..."/>
+                                            </div>
+                                            <div class="form-field">
+                                                <p>Dirección:</p>
+                                                <input type="text" name="direccion" placeholder="Escribe aquí tu dirección..."/>
+                                            </div>                
+                                            <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Registrar"/>
+                                        </form>
+                                    </div>
+                                    <!------------------------------------->
+                                    <!--- FIN SUBPESTAÑA AÑADIR MONITOR --->
+                                    <!------------------------------------->
+                                </div>
                             </div>
-
                             <!----------------------------->
                             <!--- FIN PESTAÑA MONITORES --->
                             <!----------------------------->
@@ -429,103 +580,69 @@
                             <!---------------------------->
 
                             <div class="tab-pane fade" id="salas" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                                <h1>Lista de salas</h1>
-                                <%
-                                    SalaDao saladao = new SalaDao(conexion);
-                                    ArrayList<Sala> salas = saladao.listarSala();
-
-                                %>
-                                <ul>
-                                    <%            for (Sala sala : salas) {
-                                    %>
-                                    <li><%= sala.getIdSala()%> &nbsp; <%= sala.getNombre()%> &nbsp; <%= sala.getExtension()%>
-                                        <a href="borrar-sala?id=<%= sala.getIdSala()%>">Eliminar</a></li>
-                                        <%
-                                            }
-                                        %>
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#ver-salas" role="tab" aria-controls="home" aria-selected="true">Listado de salas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#anadir-sala" role="tab" aria-controls="profile" aria-selected="false">Añadir sala</a>
+                                    </li>
                                 </ul>
-                                <%
-                                    // Muestra el mensaje (si lo hay)
-                                    String messageSala = request.getParameter("messageSala");
-                                    if (messageSala != null) {
-                                %>
-                                <p style='color:green'><%= messageSala%></p>
-                                <%
-                                    }
-                                %>
 
-                                <h1>Añadir sala</h1>
-                                <form method="post" action="anadir-sala">
-                                    Nombre de la sala:
-                                    <input type="text" name="nombre"/><br/>
-                                    Extension
-                                    <input type="text" name="extension"/><br/>
-                                    <input type="submit" value="Registrar"/>
-                                </form>
-                                <%
-                                    String statusSala = request.getParameter("statusSala");
-                                    if (statusSala == null) {
-                                        statusSala = "";
-                                    }
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="ver-salas" role="tabpanel" aria-labelledby="profile-tab">
+                                        <h2>Lista de salas</h2>
+                                        <p>En esta lista podrás ver todas las salas de las que dispone nuestro gimnasio, y eliminarlas en caso de ser necesario.</p><br>
+                                        <table class="table lista-socios">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Extensión</th>
+                                                    <th scope="col"> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%
+                                                    SalaDao saladao = new SalaDao(conexion);
+                                                    ArrayList<Sala> salas = saladao.listarSala();
+                                                %>
+                                                <%  for (Sala sala : salas) {
+                                                %>
+                                                <tr>
+                                                    <th scope="row"><%= sala.getIdSala()%></th>
+                                                    <td><%= sala.getNombre()%></td>
+                                                    <td><%= sala.getExtension()%></td>
+                                                    <td><a href="borrar-sala?id=<%= sala.getIdSala()%>"> <button class="w-100 btn btn-lg btn-primary button-dark admin">Eliminar</button></a></td>
+                                                </tr>
+                                                <%
+                                                    }
+                                                %>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                    if (statusSala.equals("ok")) {
-                                        out.println("<p style='color:green'>La sala se ha registrado con éxito</p>");
-                                    } else if (statusSala.equals("error")) {
-                                        out.println("<p style='color:red'>No se ha podido registrar la sala</p>");
-                                    }
-                                %>
+                                    <div class="tab-pane fade" id="anadir-sala" role="tabpanel" aria-labelledby="profile-tab">
+                                        <h2>Añadir sala</h2>
+                                        <p>Añade una nueva sala en nuestro gimnasio para poder realizar en ella diferentes actividades.</p><br>
+
+                                        <form method="post" action="anadir-sala">
+                                            <div class="form-field">
+                                                <p>Nombre de la sala:</p>
+                                                <input type="text" name="nombre" placeholder="Escribe aquí el nombre de la sala..."/>
+                                            </div>
+                                            <div class="form-field">
+                                                <p>Extensión de la sala:</p>
+                                                <input type="text" name="extension" placeholder="Escribe aquí la extensión de la sala en metros cuadrados..."/>
+                                            </div>
+                                            <input class="w-100 btn btn-lg btn-primary button-dark" type="submit" value="Registrar"/>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                             <!------------------------->
                             <!--- FIN PESTAÑA SALAS --->
                             <!------------------------->
-
-                            <!------------------------->
-                            <!--- INICIO CRECION ACTIVIDADES --->
-                            <!------------------------->
-                            <%
-                                ArrayList<Tipo> tiposAux = new ArrayList<>();
-                                ArrayList<Sala> salasAux = new ArrayList<>();
-                                ArrayList<Monitor> monitoresAux = new ArrayList<>();
-                                TipoDao tipodaoAux = new TipoDao(conexion);
-                                SalaDao saladaoAux = new SalaDao(conexion);
-                                MonitorDao monitordaoAux = new MonitorDao(conexion);
-                                tiposAux = tipodaoAux.listarTipo();
-                                salasAux = saladaoAux.listarSala();
-                                monitoresAux = monitordaoAux.listarMonitor();
-                            %>
-                            <form method="post" action="crear-actividad">
-
-                                <input type="textAux" name="descripcionAux" value=""> 
-                                <select name="tipoAux">
-                                    <option selected="selected"> --Seleccionar actividad-- </option> 
-                                    <%
-                    for (Tipo tipoAux : tiposAux) {%>
-                                    <option value="<%= tipoAux.getIdTipo()%>" ><%= tipoAux.getNombreTipo()%></option>
-                                    <%}%>
-                                </select> 
-
-                                <select name="salaAux">
-                                    <option selected="selected"> --Seleccionar sala-- </option> 
-                                    <%
-                    for (Sala salaAux : salasAux) {%>
-                                    <option value="<%= salaAux.getIdSala()%>" ><%= salaAux.getNombre()%></option>
-                                    <%}%>
-                                </select> 
-
-                                <select name="monitorAux">
-                                    <option selected="selected"> --Seleccionar monitor-- </option> 
-                                    <%
-                    for (Monitor monitorAux : monitoresAux) {%>
-                                    <option value="<%= monitorAux.getIdMonitor()%>" ><%= monitorAux.getNombre()%></option>
-                                    <%}%>
-                                </select> 
-
-                                <input type="submit" value="Reservar"/>
-                            </form>
-
-
-
-
                         </div>
                     </div>
             </section>
